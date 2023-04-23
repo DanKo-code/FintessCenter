@@ -1,0 +1,33 @@
+﻿<Window x:Class="FitnessCenter.Views.Windows.LoginRegistration.LoginRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnessCenter.Views.Windows.LoginRegistration"
+        
+        xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
+        xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.LoginRegistration.UserControls"
+        
+        mc:Ignorable="d"       
+        Title="LoginRegistration" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:LoginRegistrationViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DockPanel LastChildFill="False" Grid.Row="0">
+            <Button Command="{Binding ShowLoginCommand}" DockPanel.Dock="Left" Height="50" Width="200" Margin="150,0,0,0" Content="Вход"/>
+            <Button Command="{Binding ShowRegisterCommand}" DockPanel.Dock="Right" Height="50" Width="200" Margin="0,0,150,0" Content="Регистрация"/>
+        </DockPanel>
+
+        <uc:Login Grid.Row="1" Visibility="{Binding LoginVisibility}"/>
+        
+
+    </Grid>
+</Window>

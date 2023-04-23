@@ -10,7 +10,7 @@
     <Compile Update="Views\Windows\LoginRegistration\LoginRegistration.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Windows\LoginRegistration\UserControls\Login.xaml.cs">
+    <Compile Update="Views\Windows\LoginRegistration\UserControls\LoginControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,7 +24,7 @@
     <Page Update="Views\Windows\LoginRegistration\Resources\LoginRegistrationStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Windows\LoginRegistration\UserControls\Login.xaml">
+    <Page Update="Views\Windows\LoginRegistration\UserControls\LoginControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

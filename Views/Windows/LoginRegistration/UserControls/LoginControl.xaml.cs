@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FitnessCenter.Views.Windows.LoginRegistration.UserControls
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for LoginControl.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class LoginControl : UserControl
     {
-        public Login()
+        public LoginControl()
         {
             InitializeComponent();
         }

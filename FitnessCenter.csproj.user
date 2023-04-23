@@ -16,11 +16,11 @@
     <Compile Update="Views\Windows\LoginRegistration\UserControls\RegistrationControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Main\Main.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Windows\LoginRegistration\LoginRegistration.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -31,6 +31,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\LoginRegistration\UserControls\RegistrationControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Main\Main.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

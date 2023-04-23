@@ -1,0 +1,61 @@
+﻿<Window x:Class="FitnessCenter.Views.Windows.Main.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main"
+        mc:Ignorable="d"
+        Title="Main" Height="450" Width="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Height="100" Background="#CCFF00">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Content="Фото клуба" Margin="10" Width="70" Height="30"/>
+                <Button Content="Правила" Margin="10" Width="70" Height="30"/>
+                <Button Content="О нас" Margin="10" Width="70" Height="30"/>
+            </StackPanel>
+
+            <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="Главная"/>
+
+            <StackPanel Grid.Column="2">
+                <Button Content="Связь" Margin="10" Width="70" Height="70"/>
+            </StackPanel>
+            
+        </Grid>
+
+        <Border DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="0 2 0 0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="Главная" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Content="Абонементы" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Content="Аренда" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Content="Профиль" Margin="40 20 40 20" Width="100" Height="40"/>
+            </StackPanel>
+        </Border>
+
+        <DockPanel>
+            <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
+
+                <Button Margin="10" Content="язык 2"/>
+                <Button Margin="10" Content="язык 1"/>
+
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right">
+                <Button Width="50" Height="50" Margin="10" Content="язык 1"/>
+            </StackPanel>
+
+            <!--Наполнение-->
+            <Grid>
+                
+            </Grid>
+        </DockPanel>
+
+
+
+    </DockPanel>
+</Window>

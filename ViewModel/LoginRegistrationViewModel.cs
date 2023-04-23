@@ -1,4 +1,5 @@
 ﻿using FitnessCenter.Core;
+using FitnessCenter.Views.Windows.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,8 +73,23 @@ namespace FitnessCenter.ViewModel
 
         private void OnShowRegisterCommand(object p)
         {
-            RegisterVisibility = Visibility.Visible;
             LoginVisibility = Visibility.Collapsed;
+            RegisterVisibility = Visibility.Visible;
+        }
+        #endregion
+
+        #region GoMain
+        public ICommand GoMainCommand { get; }
+
+        private bool CanGoMainCommand(object p) => true;
+
+        private void OnGoMainCommand(object p)
+        {
+            Main window = new Main();
+            window.Show();
+
+            App.Current.MainWindow = window;
+            App.Current.Windows[0].Close();
         }
         #endregion
 
@@ -83,6 +99,7 @@ namespace FitnessCenter.ViewModel
         {
             ShowLoginCommand = new RelayCommand(OnShowLoginCommand, CanShowLoginCommand);
             ShowRegisterCommand = new RelayCommand(OnShowRegisterCommand, CanShowRegisterCommand);
+            GoMainCommand = new RelayCommand(OnGoMainCommand, CanGoMainCommand);
         }
     }
 }

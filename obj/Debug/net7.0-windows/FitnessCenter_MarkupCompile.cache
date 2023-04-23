@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\App.xaml
-41859907317
+5-421273881
 
-81201527716
+92066674995
 1981827736222
-Views\MainWindow.xaml;Views\Windows\LoginRegistration\LoginRegistration.xaml;Views\Windows\LoginRegistration\Resources\LoginRegistrationStyles.xaml;Views\Windows\LoginRegistration\UserControls\LoginControl.xaml;
+Resources\LoginRegistrationStyles.xaml;Views\MainWindow.xaml;Views\Windows\LoginRegistration\LoginRegistration.xaml;Views\Windows\LoginRegistration\UserControls\LoginControl.xaml;Views\Windows\LoginRegistration\UserControls\RegistrationControl.xaml;
 
 False
 

@@ -25,9 +25,9 @@
             <DockPanel.Background>
                 <ImageBrush ImageSource="{Binding SliderImage}" Stretch="UniformToFill"/>
             </DockPanel.Background>
-            
-            <Button Margin="80 0 0 0" DockPanel.Dock="Left" Width="30" Height="30"/>
-            <Button Margin="0 0 80 0" DockPanel.Dock="Right" Width="30" Height="30"/>
+
+            <Button Command="{Binding LeftImageCpmmand}" Margin="80 0 0 0" DockPanel.Dock="Left" Width="30" Height="30"/>
+            <Button Command="{Binding RightImageCpmmand}" Margin="0 0 80 0" DockPanel.Dock="Right" Width="30" Height="30"/>
             
         </DockPanel>
         

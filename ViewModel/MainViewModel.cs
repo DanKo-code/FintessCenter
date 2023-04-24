@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using FitnessCenter.Models;
 
 namespace FitnessCenter.ViewModel
 {
     internal class MainViewModel : ObservableObject
     {
+        //Для слайдера
         List<string> SliderImages = new List<string>();
         int SliderImagesIndex = 0;
+
+        //Для абонементов
+        
 
         #region Accessors (helpers for ui design)
 
@@ -48,6 +53,41 @@ namespace FitnessCenter.ViewModel
                 if (_sliderImage != value)
                 {
                     _sliderImage = value;
+                    OnPropertyChanged(nameof(SliderImage));
+                }
+            }
+        }
+        #endregion
+
+        #region AbonementItems
+        private List<Abonement> _abonementItems = new List<Abonement> 
+        {
+            new Abonement{ Name = "Взрослая карта на 1 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 2 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 3 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 4 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 5 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 6 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 7 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 8 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 9 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 10 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 11 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 12 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 13 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 14 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonement{ Name = "Взрослая карта на 15 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+        };
+
+        public List<Abonement> AbonementItems
+        {
+            get => _abonementItems;
+
+            set
+            {
+                if (_abonementItems != value)
+                {
+                    _abonementItems = value;
                     OnPropertyChanged(nameof(SliderImage));
                 }
             }
@@ -90,6 +130,17 @@ namespace FitnessCenter.ViewModel
             }
 
             SliderImage = SliderImages[SliderImagesIndex];
+        }
+        #endregion
+
+        #region GoAbonements
+        public ICommand GoAbonements { get; }
+
+        private bool CanGoAbonementsCommand(object p) => true;
+
+        private void OnGoAbonementsCommand(object p)
+        {
+            
         }
         #endregion
 

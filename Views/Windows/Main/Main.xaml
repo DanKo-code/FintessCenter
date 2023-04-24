@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main"
         
         xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls"
+        xmlns:uc1="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.Abonements"
         xmlns:vm="clr-namespace:FitnessCenter.ViewModel"    
         
         mc:Ignorable="d"
@@ -46,26 +47,36 @@
             </StackPanel>
         </Border>
 
-        <DockPanel>
-            <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" VerticalAlignment="Bottom" DockPanel.Dock="Left">
 
                 <Button Margin="10" Content="язык 2"/>
                 <Button Margin="10" Content="язык 1"/>
 
             </StackPanel>
 
-            <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Right">
+            <StackPanel Grid.Column="2" VerticalAlignment="Bottom" DockPanel.Dock="Right">
                 <Button Width="50" Height="50" Margin="10" Content="язык 1"/>
             </StackPanel>
 
             <!--Наполнение-->
             
             <!--Главная-->
-            <uc:ForMain/>
+              
+            <uc:ForMain Grid.Column="1" Visibility="Collapsed"/>
+            <uc1:AbonementsCore Grid.Column="1" Visibility="Visible"/>
 
-            
-            
-        </DockPanel>
+
+
+
+        </Grid>
 
 
 

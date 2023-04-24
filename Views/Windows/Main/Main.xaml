@@ -4,8 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main"
+        
+        xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls"
+        xmlns:vm="clr-namespace:FitnessCenter.ViewModel"    
+        
         mc:Ignorable="d"
         Title="Main" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
     <DockPanel>
         <Grid DockPanel.Dock="Top" Height="100" Background="#CCFF00">
             <Grid.ColumnDefinitions>
@@ -50,9 +59,9 @@
             </StackPanel>
 
             <!--Наполнение-->
-            <Grid>
-                
-            </Grid>
+            <uc:ForMain/>
+
+            
         </DockPanel>
 
 

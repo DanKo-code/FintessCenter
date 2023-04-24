@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="Image1" UriSource="/Resources/Images/1.jpg" />
+    <BitmapImage x:Key="Image2" UriSource="/Resources/Images/2.jpg" />
+    <BitmapImage x:Key="Image3" UriSource="/Resources/Images/3.jpg" />
+    <BitmapImage x:Key="Image4" UriSource="/Resources/Images/4.jpg" />
+    <BitmapImage x:Key="Image5" UriSource="/Resources/Images/5.jpg" />
+</ResourceDictionary>

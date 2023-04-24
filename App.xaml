@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:FitnessCenter"
              StartupUri="Views/Windows/LoginRegistration/LoginRegistration.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="/Resources/LoginRegistrationStyles.xaml" />
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/LoginRegistrationStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/ImagesDictionary/Images.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

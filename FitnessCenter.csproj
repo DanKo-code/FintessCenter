@@ -8,8 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\1.jpg" />
+    <None Remove="Resources\Images\2.jpg" />
+    <None Remove="Resources\Images\3.jpg" />
+    <None Remove="Resources\Images\4.jpg" />
+    <None Remove="Resources\Images\5.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\Windows\Main\UserControls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\1.jpg" />
+    <Resource Include="Resources\Images\2.jpg" />
+    <Resource Include="Resources\Images\3.jpg" />
+    <Resource Include="Resources\Images\4.jpg" />
+    <Resource Include="Resources\Images\5.jpg" />
   </ItemGroup>
 
 </Project>

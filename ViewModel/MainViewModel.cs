@@ -18,6 +18,24 @@ namespace FitnessCenter.ViewModel
 
         #region Accessors (helpers for ui design)
 
+        #region HeaderText
+        private string _headerText = "Главная";
+
+        public string HeaderText
+        {
+            get => _headerText;
+
+            set
+            {
+                if(_headerText != value)
+                {
+                    _headerText = value;
+                    OnPropertyChanged(nameof(HeaderText));
+                }
+            }
+        }
+        #endregion
+
         #region SliderImage
         private string _sliderImage;
 
@@ -43,7 +61,10 @@ namespace FitnessCenter.ViewModel
         #region LeftImageCpmmand
         public ICommand LeftImageCpmmand { get; }
 
-        private bool CanLeftImageCommand(object p) => true;
+        private bool CanLeftImageCommand(object p)
+        {
+            return SliderImages.Count > 0;
+        }
 
         private void OnLeftImageCommand(object p)
         {
@@ -59,7 +80,7 @@ namespace FitnessCenter.ViewModel
         #region RightImageCpmmand
         public ICommand RightImageCpmmand { get; }
 
-        private bool CanRightImageCommand(object p) => true;
+        private bool CanRightImageCommand(object p) => SliderImages.Count > 0;
 
         private void OnRightImageCommand(object p)
         {
@@ -92,6 +113,7 @@ namespace FitnessCenter.ViewModel
                 }
             }
 
+            if(SliderImages.Count > 0)
             SliderImage = SliderImages[0];
         }
     }

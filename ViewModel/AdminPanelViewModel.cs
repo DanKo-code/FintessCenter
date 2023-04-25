@@ -41,6 +41,25 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region SelectedProducts
+        private Abonements _selectedProducts;
+
+        public Abonements SelectedProducts
+        {
+            get => _selectedProducts;
+
+            set
+            {
+                if (_selectedProducts != value)
+                {
+                    _selectedProducts = value;
+                    OnPropertyChanged(nameof(SelectedProducts));
+                }
+            }
+        }
+        #endregion
+
+
 
         #endregion
 

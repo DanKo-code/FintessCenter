@@ -43,7 +43,7 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Command="{Binding ShowForMain}" Content="Главная" Margin="40 20 40 20" Width="100" Height="40"/>
                 <Button Command="{Binding ShowAbonementsCore}" Content="Абонементы" Margin="40 20 40 20" Width="100" Height="40"/>
-                <Button Content="Панель админа" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Command="{Binding ShowAdminPanel}" Content="Панель админа" Margin="40 20 40 20" Width="100" Height="40"/>
             </StackPanel>
         </Border>
 
@@ -70,11 +70,11 @@
             
             <!--Главная-->
               
-            <!--<uc:ForMain Grid.Column="1" Visibility="{Binding ForMainVisibility}"/>
+            <uc:ForMain Grid.Column="1" Visibility="{Binding ForMainVisibility}"/>
             <uc1:AbonementsCore Grid.Column="1" Visibility="{Binding AbonementsCoreVisibility}"/>
-            <uc2:AdminPanel Grid.Column="1" Visibility="{Binding AdminPanelVisibility}"/>-->
+            <uc2:AdminPanel Grid.Column="1" Visibility="{Binding AdminPanelVisibility}"/>
 
-            <uc2:AdminPanel Grid.Column="1" Visibility="Visible"/>
+            <!--<uc2:AdminPanel Grid.Column="1" Visibility="Visible"/>-->
 
 
 

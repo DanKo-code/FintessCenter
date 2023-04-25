@@ -18,9 +18,6 @@ namespace FitnessCenter.ViewModel
         List<string> SliderImages = new List<string>();
         int SliderImagesIndex = 0;
 
-        //Для абонементов
-        
-
         #region Accessors (helpers for ui design)
 
         #region HeaderText
@@ -130,9 +127,27 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region AdminPanelVisibility
+        private Visibility _adminPanelVisibility = Visibility.Collapsed;
+
+        public Visibility AdminPanelVisibility
+        {
+            get => _adminPanelVisibility;
+
+            set
+            {
+                if (_adminPanelVisibility != value)
+                {
+                    _adminPanelVisibility = value;
+                    OnPropertyChanged(nameof(AdminPanelVisibility));
+                }
+            }
+        }
         #endregion
 
 
+
+        #endregion
 
         #region Commands
 
@@ -180,6 +195,7 @@ namespace FitnessCenter.ViewModel
         {
             AbonementsCoreVisibility = Visibility.Visible;
             ForMainVisibility = Visibility.Collapsed;
+            AdminPanelVisibility = Visibility.Collapsed;
             HeaderText = "Абонементы";
         }
         #endregion
@@ -193,6 +209,21 @@ namespace FitnessCenter.ViewModel
         {
             AbonementsCoreVisibility = Visibility.Collapsed;
             ForMainVisibility = Visibility.Visible;
+            AdminPanelVisibility = Visibility.Collapsed;
+            HeaderText = "Главная";
+        }
+        #endregion
+
+        #region ShowAdminPanel
+        public ICommand ShowAdminPanel { get; }
+
+        private bool CanShowAdminPanelCommand(object p) => true;
+
+        private void OnShowAdminPanelCommand(object p)
+        {
+            AbonementsCoreVisibility = Visibility.Collapsed;
+            ForMainVisibility = Visibility.Collapsed;
+            AdminPanelVisibility = Visibility.Visible;
             HeaderText = "Главная";
         }
         #endregion
@@ -205,6 +236,7 @@ namespace FitnessCenter.ViewModel
             RightImageCpmmand = new RelayCommand(OnRightImageCommand, CanRightImageCommand);
             ShowAbonementsCore = new RelayCommand(OnShowAbonementsCoreCommand, CanShowAbonementsCoreCommand);
             ShowForMain = new RelayCommand(OnShowForMainCommand, CanShowForMainCommand);
+            ShowAdminPanel = new RelayCommand(OnShowAdminPanelCommand, CanShowAdminPanelCommand);
 
             //Найти словарь
             var imagesDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/ImagesDictionary/Images.xaml");

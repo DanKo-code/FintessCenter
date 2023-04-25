@@ -94,7 +94,45 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ForMainVisibility
+        private Visibility _forMainVisibility = Visibility.Visible;
+
+        public Visibility ForMainVisibility
+        {
+            get => _forMainVisibility;
+
+            set
+            {
+                if (_forMainVisibility != value)
+                {
+                    _forMainVisibility = value;
+                    OnPropertyChanged(nameof(ForMainVisibility));
+                }
+            }
+        }
         #endregion
+
+        #region AbonementsCoreVisibility
+        private Visibility _abonementsCoreVisibility = Visibility.Collapsed;
+
+        public Visibility AbonementsCoreVisibility
+        {
+            get => _abonementsCoreVisibility;
+
+            set
+            {
+                if (_abonementsCoreVisibility != value)
+                {
+                    _abonementsCoreVisibility = value;
+                    OnPropertyChanged(nameof(AbonementsCoreVisibility));
+                }
+            }
+        }
+        #endregion
+
+        #endregion
+
+
 
         #region Commands
 
@@ -133,14 +171,29 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-        #region GoAbonements
-        public ICommand GoAbonements { get; }
+        #region ShowAbonementsCore
+        public ICommand ShowAbonementsCore { get; }
 
-        private bool CanGoAbonementsCommand(object p) => true;
+        private bool CanShowAbonementsCoreCommand(object p) => true;
 
-        private void OnGoAbonementsCommand(object p)
+        private void OnShowAbonementsCoreCommand(object p)
         {
-            
+            AbonementsCoreVisibility = Visibility.Visible;
+            ForMainVisibility = Visibility.Collapsed;
+            HeaderText = "Абонементы";
+        }
+        #endregion
+
+        #region ShowForMain
+        public ICommand ShowForMain { get; }
+
+        private bool CanShowForMainCommand(object p) => true;
+
+        private void OnShowForMainCommand(object p)
+        {
+            AbonementsCoreVisibility = Visibility.Collapsed;
+            ForMainVisibility = Visibility.Visible;
+            HeaderText = "Главная";
         }
         #endregion
 
@@ -150,6 +203,8 @@ namespace FitnessCenter.ViewModel
         {
             LeftImageCpmmand = new RelayCommand(OnLeftImageCommand, CanLeftImageCommand);
             RightImageCpmmand = new RelayCommand(OnRightImageCommand, CanRightImageCommand);
+            ShowAbonementsCore = new RelayCommand(OnShowAbonementsCoreCommand, CanShowAbonementsCoreCommand);
+            ShowForMain = new RelayCommand(OnShowForMainCommand, CanShowForMainCommand);
 
             //Найти словарь
             var imagesDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/ImagesDictionary/Images.xaml");

@@ -35,3 +35,5 @@ D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-w
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\Abonements\AbonementsCore.g.cs
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\Abonements\AbonementItem.baml
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\Abonements\AbonementsCore.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AdminPanel.g.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AdminPanel.baml

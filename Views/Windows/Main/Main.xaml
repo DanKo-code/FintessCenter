@@ -7,6 +7,7 @@
         
         xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls"
         xmlns:uc1="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.Abonements"
+        xmlns:uc2="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.AdminPanel"
         xmlns:vm="clr-namespace:FitnessCenter.ViewModel"    
         
         mc:Ignorable="d"
@@ -40,10 +41,9 @@
 
         <Border DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="0 2 0 0">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Главная" Margin="40 20 40 20" Width="100" Height="40"/>
-                <Button Content="Абонементы" Margin="40 20 40 20" Width="100" Height="40"/>
-                <Button Content="Аренда" Margin="40 20 40 20" Width="100" Height="40"/>
-                <Button Content="Профиль" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Command="{Binding ShowForMain}" Content="Главная" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Command="{Binding ShowAbonementsCore}" Content="Абонементы" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Content="Панель админа" Margin="40 20 40 20" Width="100" Height="40"/>
             </StackPanel>
         </Border>
 
@@ -70,8 +70,11 @@
             
             <!--Главная-->
               
-            <uc:ForMain Grid.Column="1" Visibility="Collapsed"/>
-            <uc1:AbonementsCore Grid.Column="1" Visibility="Visible"/>
+            <!--<uc:ForMain Grid.Column="1" Visibility="{Binding ForMainVisibility}"/>
+            <uc1:AbonementsCore Grid.Column="1" Visibility="{Binding AbonementsCoreVisibility}"/>
+            <uc2:AdminPanel Grid.Column="1" Visibility="{Binding AdminPanelVisibility}"/>-->
+
+            <uc2:AdminPanel Grid.Column="1" Visibility="Visible"/>
 
 
 

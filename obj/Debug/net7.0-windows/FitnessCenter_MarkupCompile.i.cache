@@ -1,0 +1,20 @@
+﻿FitnessCenter
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\
+FitnessCenter
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\App.xaml
+1019135610
+
+17-1549664053
+1981827736222
+Resources\ImagesDictionary\Images.xaml;Resources\LoginRegistrationStyles.xaml;Views\Windows\LoginRegistration\LoginRegistration.xaml;Views\Windows\LoginRegistration\UserControls\LoginControl.xaml;Views\Windows\LoginRegistration\UserControls\RegistrationControl.xaml;Views\Windows\Main\Main.xaml;Views\Windows\Main\UserControls\Abonements\AbonementItem.xaml;Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml;Views\Windows\Main\UserControls\AdminPanel\AdminPanel.xaml;Views\Windows\Main\UserControls\ForMain.xaml;
+
+True
+

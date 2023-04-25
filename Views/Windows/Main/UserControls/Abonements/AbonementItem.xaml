@@ -92,6 +92,8 @@
                     <TextBlock Margin="10" VerticalAlignment="Center" Text="рублей"/>
                 </StackPanel>
 
+                <Image Margin="20" Width="400" Height="200" Source="/Resources/Images/2.jpg"/>
+
             </StackPanel>
         </Grid>
         

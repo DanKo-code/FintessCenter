@@ -25,6 +25,9 @@
     <Compile Update="Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Main\UserControls\AdminPanel\AdminPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Main\UserControls\ForMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\Main\UserControls\AdminPanel\AdminPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Main\UserControls\ForMain.xaml">

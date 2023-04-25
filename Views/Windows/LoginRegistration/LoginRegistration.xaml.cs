@@ -1,4 +1,5 @@
-﻿using FitnessCenter.ViewModel;
+﻿using FitnessCenter.BD;
+using FitnessCenter.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace FitnessCenter.Views.Windows.LoginRegistration
         {
             InitializeComponent();
 
+            using (BDContext db = new BDContext())
+            {
+
+            }
             
         }
     }

@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Images\1.jpg" />
     <Resource Include="Resources\Images\2.jpg" />
     <Resource Include="Resources\Images\3.jpg" />

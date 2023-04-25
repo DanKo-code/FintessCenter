@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.AdminPanel"
+             xmlns:local="clr-namespace:FitnessCenter.ViewModel"
+             
+             
+             
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -79,7 +83,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel VerticalAlignment="Center"  Grid.Column="0">
-                    <Button Content="Добавить" Margin="10"/>
+                    <Button Command="{Binding AddAbonement}" Content="Добавить" Margin="10"/>
                     <Button Content="Поиск" Margin="10"/>
                 </StackPanel>
 
@@ -92,7 +96,7 @@
 
         <GridSplitter Width="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 
-        <ListView Background="Green"  Grid.Column="2">
+        <ListView ItemsSource="{Binding AbonementsList}" Background="Green"  Grid.Column="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название">

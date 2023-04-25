@@ -57,7 +57,7 @@ namespace FitnessCenter.Views.Windows.Main {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FitnessCenter;component/views/windows/main/main.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FitnessCenter;V1.0.0.0;component/views/windows/main/main.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Views\Windows\Main\Main.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

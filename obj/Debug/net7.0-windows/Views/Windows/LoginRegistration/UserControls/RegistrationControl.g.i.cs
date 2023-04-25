@@ -53,8 +53,8 @@ namespace FitnessCenter.Views.Windows.LoginRegistration.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FitnessCenter;component/views/windows/loginregistration/usercontrols/registratio" +
-                    "ncontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FitnessCenter;V1.0.0.0;component/views/windows/loginregistration/usercontrols/re" +
+                    "gistrationcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Views\Windows\LoginRegistration\UserControls\RegistrationControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

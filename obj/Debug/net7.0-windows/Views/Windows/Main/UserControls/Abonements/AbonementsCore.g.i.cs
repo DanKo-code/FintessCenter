@@ -53,8 +53,8 @@ namespace FitnessCenter.Views.Windows.Main.UserControls.Abonements {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FitnessCenter;component/views/windows/main/usercontrols/abonements/abonementscor" +
-                    "e.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FitnessCenter;V1.0.0.0;component/views/windows/main/usercontrols/abonements/abon" +
+                    "ementscore.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\..\Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

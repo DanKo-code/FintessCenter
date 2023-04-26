@@ -1,4 +1,5 @@
 ﻿using FitnessCenter.BD.EntitiesBD;
+using FitnessCenter.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,24 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
 
         public AbonementRepository() => context = new BDContext();
 
-        public List<Abonements> GetAllAbonements()
+        public List<AbonementModel> GetAllAbonements()
         {
             try
             {
+                List<AbonementModel> tempList = new List<AbonementModel>();
 
-                return context.Abonements.ToList();
+                foreach (Abonements item in context.Abonements)
+                {
+                    tempList.Add(new AbonementModel(item));
+                }
+
+
+
+                return tempList.ToList();
             }
             catch
             {
-                return new List<Abonements>();
+                return new List<AbonementModel>();
             }
         }
 

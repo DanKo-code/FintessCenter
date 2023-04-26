@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitnessCenter.Models
 {
-    internal class AbonementModel : ObservableObject
+    public class AbonementModel : ObservableObject
     {
         private string _title;
         private string _validity;

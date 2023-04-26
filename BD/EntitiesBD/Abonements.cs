@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessCenter.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public ICollection<Orders> Orders { get; set; }
 
-        public Abonements() { }
+        //public Abonements() { }
 
         public Abonements(string title, string age, string validity, string visitingTime, int amount, int price)
         {

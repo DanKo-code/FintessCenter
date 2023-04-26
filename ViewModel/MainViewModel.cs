@@ -60,13 +60,10 @@ namespace FitnessCenter.ViewModel
         #region AbonementItems
         private List<AbonementModel> _abonementItems = new List<AbonementModel>
         {
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
-            new AbonementModel(new Abonements()),
+            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
+            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
+            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
+            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
 
 
             //new AbonementModel{ Name = "Взрослая карта на 1 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},

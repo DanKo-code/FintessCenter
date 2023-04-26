@@ -10,13 +10,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
 
-
-    <!--<UserControl.DataContext>
-        <vm:AdminPanelViewModel/>
-    </UserControl.DataContext>-->
-
     <Grid>
-        
+
+        <Grid.DataContext>
+            <vm:AdminPanelViewModel/>
+        </Grid.DataContext>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
@@ -36,31 +35,31 @@
                 <Button Content="Пользователи" Margin="10" Width="100" Height="30"/>
             </StackPanel>
 
-            <Grid Grid.Row="1" DataContext="{Binding SelectedProducts}">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
+                <StackPanel DataContext="{Binding SelectedProducts}" Grid.Column="0">
                     <StackPanel Margin="5">
                         <Label Content="Название:"/>
-                        <TextBox/>
+                        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Margin="5">
                         <Label Content="Срок действия:"/>
-                        <TextBox/>
+                        <TextBox Text="{Binding Validity, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Margin="5">
                         <Label Content="Время посещения:"/>
-                        <TextBox/>
+                        <TextBox Text="{Binding VisitingTime, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Margin="5">
                         <Label Content="Доступное кол-во:"/>
-                        <TextBox/>
+                        <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Margin="5">
@@ -70,7 +69,7 @@
 
                     <StackPanel Margin="5">
                         <Label Content="Стоимость:"/>
-                        <TextBox/>
+                        <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -102,31 +101,79 @@
 
         <GridSplitter Width="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 
-        <ListView SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding AbonementsList}" Background="Green"  Grid.Column="2">
+        <ListView  SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding AbonementsList}" Background="Green"  Grid.Column="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название">
-                        
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Срок действия">
-
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Validity}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Время посещения:">
-
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VisitingTime}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Доступное кол-во:">
-
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Amount}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Включено:">
-
+                        <!--<GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VisitingTime}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>-->
                     </GridViewColumn>
                     
                     <GridViewColumn Header="Стоимость:">
-
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Price}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
                     <GridViewColumn Header="Фото:">

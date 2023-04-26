@@ -19,7 +19,7 @@ namespace FitnessCenter.ViewModel
         private UnitOfWork context;
 
         //Список абонементов
-        public ObservableCollection<Abonements> AbonementsList { get; set; }
+        public ObservableCollection<AbonementModel> AbonementsList { get; set; }
 
         #region Accessors (helpers for ui design)
 
@@ -42,17 +42,17 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region SelectedProducts
-        private Abonements _selectedProducts;
+        private AbonementModel _selectedAbonement;
 
-        public Abonements SelectedProducts
+        public AbonementModel SelectedProducts
         {
-            get => _selectedProducts;
+            get => _selectedAbonement;
 
             set
             {
-                if (_selectedProducts != value)
+                if (_selectedAbonement != value)
                 {
-                    _selectedProducts = value;
+                    _selectedAbonement = value;
                     OnPropertyChanged(nameof(SelectedProducts));
                 }
             }
@@ -72,10 +72,15 @@ namespace FitnessCenter.ViewModel
 
         private void OnAddAbonementCommand(object p)
         {
-            Abonements abonement = new Abonements();
+            Abonements temp = new Abonements("GYM_3", "18", "BLA", "BLA", 100, 17000);
+            AbonementModel abonement = new AbonementModel(temp);
+            
 
             AbonementsList.Add(abonement);
-            context.AbonementRepo.AddAbonement(abonement);
+
+
+
+            context.AbonementRepo.AddAbonement(temp);
         }
         #endregion
 
@@ -89,8 +94,8 @@ namespace FitnessCenter.ViewModel
             //сразу загрузил даынне
             context = new UnitOfWork();
 
-            //заполнил смотрящего 
-            AbonementsList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
+            //заполнил смотрящего //TODO добавить 
+            AbonementsList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
 
             
             

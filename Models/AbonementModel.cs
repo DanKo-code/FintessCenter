@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitnessCenter.Models
 {
-    public class AbonementModel : ObservableObject
+    internal class AbonementModel : ObservableObject
     {
         private string _title;
         private string _validity;
@@ -55,7 +55,7 @@ namespace FitnessCenter.Models
             }
         }
 
-        public string Amount
+        public int Amount
         {
             get { return _amount; }
             set

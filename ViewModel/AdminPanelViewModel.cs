@@ -18,6 +18,10 @@ namespace FitnessCenter.ViewModel
         //EF
         private UnitOfWork context;
 
+        //Ебанутая система
+        bool canAdd = true;
+
+
         //Список абонементов
         public ObservableCollection<AbonementModel> AbonementsList { get; set; }
 
@@ -50,7 +54,7 @@ namespace FitnessCenter.ViewModel
 
             set
             {
-                if (_selectedAbonement != value)
+                if (value != null && _selectedAbonement != value)
                 {
                     _selectedAbonement = value;
                     OnPropertyChanged(nameof(SelectedProducts));
@@ -68,28 +72,70 @@ namespace FitnessCenter.ViewModel
         #region AddAbonement
         public ICommand AddAbonement { get; }
 
-        private bool CanAddAbonementCommand(object p) => true;
+        private bool CanAddAbonementCommand(object p)
+        {
+            return canAdd;
+        }
 
         private void OnAddAbonementCommand(object p)
         {
-            Abonements temp = new Abonements("GYM_3", "18", "BLA", "BLA", 100, 17000);
+            //Взять поля из формы
+            string title = SelectedProducts.Title;
+            string age = SelectedProducts.Age;
+            string validity = SelectedProducts.Validity;
+            string visitingTime = SelectedProducts.VisitingTime;
+            int amount = SelectedProducts.Amount;
+            int price = SelectedProducts.Price;
+
+            Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price);
             AbonementModel abonement = new AbonementModel(temp);
-            
+
+            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
 
             AbonementsList.Add(abonement);
-
-
-
             context.AbonementRepo.AddAbonement(temp);
+
+            
         }
         #endregion
 
+        #region Deselect 
+        public ICommand Deselect { get; }
+
+        private bool CanDeselectCommand(object p)
+        {
+            foreach (AbonementModel item in AbonementsList)
+            {
+                if(SelectedProducts.Equals(item))
+                {
+                    canAdd = false;
+                    break;
+                }
+
+                    
+            }
+
+            return !canAdd;
+        }
+
+        private void OnDeselectCommand(object p)
+        {
+            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
+
+            AbonementsList.Add(SelectedProducts);
+            AbonementsList.RemoveAt(AbonementsList.Count - 1);
+
+
+            canAdd = true;
+        }
+        #endregion
 
         #endregion
 
         public AdminPanelViewModel()
         {
             AddAbonement = new RelayCommand(OnAddAbonementCommand, CanAddAbonementCommand);
+            Deselect = new RelayCommand(OnDeselectCommand, CanDeselectCommand);
 
             //сразу загрузил даынне
             context = new UnitOfWork();
@@ -97,11 +143,12 @@ namespace FitnessCenter.ViewModel
             //заполнил смотрящего //TODO добавить 
             AbonementsList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
 
-            
-            
-            
+            //на начальном этапе
+            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
 
-            
+
+
+
 
         }
     }

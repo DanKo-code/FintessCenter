@@ -35,18 +35,23 @@
                 <Button Content="Пользователи" Margin="10" Width="100" Height="30"/>
             </StackPanel>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" DataContext="{Binding SelectedProducts}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel DataContext="{Binding SelectedProducts}" Grid.Column="0">
+                <StackPanel Grid.Column="0">
                     <StackPanel Margin="5">
                         <Label Content="Название:"/>
                         <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
+                    <StackPanel Margin="5">
+                        <Label Content="Возраст:"/>
+                        <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    
                     <StackPanel Margin="5">
                         <Label Content="Срок действия:"/>
                         <TextBox Text="{Binding Validity, UpdateSourceTrigger=PropertyChanged}"/>
@@ -88,6 +93,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel VerticalAlignment="Center"  Grid.Column="0">
+                    <Button Command="{Binding Deselect}" Content="Снять выбор" Margin="10"/>
                     <Button Command="{Binding AddAbonement}" Content="Добавить" Margin="10"/>
                     <Button Content="Поиск" Margin="10"/>
                 </StackPanel>

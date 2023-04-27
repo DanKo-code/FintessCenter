@@ -27,8 +27,6 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
                     tempList.Add(new AbonementModel(item));
                 }
 
-
-
                 return tempList.ToList();
             }
             catch

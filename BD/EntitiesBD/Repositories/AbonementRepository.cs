@@ -16,22 +16,15 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
 
         public AbonementRepository() => context = new BDContext();
 
-        public List<AbonementModel> GetAllAbonements()
+        public List<Abonements> GetAllAbonements()
         {
             try
             {
-                List<AbonementModel> tempList = new List<AbonementModel>();
-
-                foreach (Abonements item in context.Abonements)
-                {
-                    tempList.Add(new AbonementModel(item));
-                }
-
-                return tempList.ToList();
+                return context.Abonements.ToList();
             }
             catch
             {
-                return new List<AbonementModel>();
+                return new List<Abonements>();
             }
         }
 

@@ -24,8 +24,8 @@ namespace FitnessCenter.ViewModel
 
 
         //Список абонементов
-        public ObservableCollection<AbonementModel> AbonementsList { get; set; }
-        public ObservableCollection<AbonementModel> SearchedList { get; set; }
+        public ObservableCollection<Abonements> AbonementsList { get; set; }
+        public ObservableCollection<Abonements> SearchedList { get; set; }
         
 
 
@@ -50,9 +50,9 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region SelectedProducts
-        private AbonementModel _selectedAbonement;
+        private Abonements _selectedAbonement;
 
-        public AbonementModel SelectedProducts
+        public Abonements SelectedProducts
         {
             get => _selectedAbonement;
 
@@ -108,11 +108,11 @@ namespace FitnessCenter.ViewModel
             int price = SelectedProducts.Price;
 
             Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price);
-            AbonementModel abonement = new AbonementModel(temp);
+            
+            SelectedProducts = new Abonements("", "", "", "", 0, 0);
 
-            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
-
-            AbonementsList.Add(abonement);
+            AbonementsList.Add(temp);
+            SearchedList.Add(temp);
             context.AbonementRepo.AddAbonement(temp);
 
             
@@ -124,7 +124,7 @@ namespace FitnessCenter.ViewModel
 
         private bool CanDeselectCommand(object p)
         {
-            foreach (AbonementModel item in AbonementsList)
+            foreach (Abonements item in AbonementsList)
             {
                 if(SelectedProducts.Equals(item))
                 {
@@ -140,10 +140,13 @@ namespace FitnessCenter.ViewModel
 
         private void OnDeselectCommand(object p)
         {
-            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
+            SelectedProducts = new Abonements("", "", "", "", 0, 0);
 
             AbonementsList.Add(SelectedProducts);
             AbonementsList.RemoveAt(AbonementsList.Count - 1);
+
+            SearchedList.Add(SelectedProducts);
+            SearchedList.RemoveAt(SearchedList.Count - 1);
 
 
             canAdd = true;
@@ -160,8 +163,10 @@ namespace FitnessCenter.ViewModel
 
         private void OnRemoveAbonementCommand(object p)
         {
+            //TODO 2
             AbonementsList.Remove(SelectedProducts);
-            context.AbonementRepo.RemoveAbonement(new Abonements(SelectedProducts.Title, SelectedProducts.Age, SelectedProducts.Validity, SelectedProducts.VisitingTime, SelectedProducts.Amount, SelectedProducts.Price));
+            SearchedList.Remove(SelectedProducts);
+            context.AbonementRepo.RemoveAbonement(SelectedProducts);
         }
         #endregion
 
@@ -181,7 +186,7 @@ namespace FitnessCenter.ViewModel
 
             SearchedList.Clear();
 
-            foreach (AbonementModel abonement in AbonementsList)
+            foreach (Abonements abonement in AbonementsList)
             {
                 if (Regex.IsMatch(abonement.Title, pattern))
                 {
@@ -204,12 +209,12 @@ namespace FitnessCenter.ViewModel
             context = new UnitOfWork();
 
             //заполнил смотрящего //TODO добавить 
-            AbonementsList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
+            AbonementsList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
-            SearchedList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
+            SearchedList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
             //на начальном этапе
-            SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));
+            SelectedProducts = new Abonements("", "", "", "", 0, 0);
 
 
 

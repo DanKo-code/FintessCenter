@@ -49,8 +49,22 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
             }
         }
 
+        public bool RemoveAbonement(Abonements abonement)
+        {
+            try
+            {
+                context.Abonements.Remove(abonement);
+                context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
-        
+
+
     }
 }

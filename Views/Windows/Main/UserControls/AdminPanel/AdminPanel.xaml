@@ -99,7 +99,7 @@
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center"  Grid.Column="1">
-                    <Button Content="Удалить" Margin="10"/>
+                    <Button Command="{Binding RemoveAbonement}" Content="Удалить" Margin="10"/>
                     <Button Content="Филтр" Margin="10"/>
                 </StackPanel>
             </Grid>

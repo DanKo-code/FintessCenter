@@ -130,12 +130,28 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region RemoveAbonement
+        public ICommand RemoveAbonement { get; }
+
+        private bool CanRemoveAbonementCommand(object p)
+        {
+            return !canAdd;
+        }
+
+        private void OnRemoveAbonementCommand(object p)
+        {
+            AbonementsList.Remove(SelectedProducts);
+            context.AbonementRepo.RemoveAbonement(new Abonements(SelectedProducts.Title, SelectedProducts.Age, SelectedProducts.Validity, SelectedProducts.VisitingTime, SelectedProducts.Amount, SelectedProducts.Price));
+        }
+        #endregion
+
         #endregion
 
         public AdminPanelViewModel()
         {
             AddAbonement = new RelayCommand(OnAddAbonementCommand, CanAddAbonementCommand);
             Deselect = new RelayCommand(OnDeselectCommand, CanDeselectCommand);
+            RemoveAbonement = new RelayCommand(OnRemoveAbonementCommand, CanRemoveAbonementCommand);
 
             //сразу загрузил даынне
             context = new UnitOfWork();

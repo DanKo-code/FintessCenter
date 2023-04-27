@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -24,6 +25,9 @@ namespace FitnessCenter.ViewModel
 
         //Список абонементов
         public ObservableCollection<AbonementModel> AbonementsList { get; set; }
+        public ObservableCollection<AbonementModel> SearchedList { get; set; }
+        
+
 
         #region Accessors (helpers for ui design)
 
@@ -63,7 +67,23 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region SearchString
+        private string _searchString;
 
+        public string SearchString
+        {
+            get => _searchString;
+
+            set
+            {
+                if (_searchString != value)
+                {
+                    _searchString = value;
+                    OnPropertyChanged(nameof(SearchString));
+                }
+            }
+        }
+        #endregion
 
         #endregion
 
@@ -145,6 +165,32 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region SearchAbonementByName
+        public ICommand SearchAbonementByName { get; }
+
+        private bool CanSearchAbonementByNameCommand(object p)
+        {
+            //return !canAdd;
+
+            return true;
+        }
+
+        private void OnSearchAbonementByNameCommand(object p)
+        {
+           string pattern = SearchString;
+
+            SearchedList.Clear();
+
+            foreach (AbonementModel abonement in AbonementsList)
+            {
+                if (Regex.IsMatch(abonement.Title, pattern))
+                {
+                    SearchedList.Add(abonement);
+                }
+            }
+        }
+        #endregion
+
         #endregion
 
         public AdminPanelViewModel()
@@ -152,12 +198,15 @@ namespace FitnessCenter.ViewModel
             AddAbonement = new RelayCommand(OnAddAbonementCommand, CanAddAbonementCommand);
             Deselect = new RelayCommand(OnDeselectCommand, CanDeselectCommand);
             RemoveAbonement = new RelayCommand(OnRemoveAbonementCommand, CanRemoveAbonementCommand);
+            SearchAbonementByName = new RelayCommand(OnSearchAbonementByNameCommand, CanSearchAbonementByNameCommand);
 
             //сразу загрузил даынне
             context = new UnitOfWork();
 
             //заполнил смотрящего //TODO добавить 
             AbonementsList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
+
+            SearchedList = new ObservableCollection<AbonementModel>(context.AbonementRepo.GetAllAbonements());
 
             //на начальном этапе
             SelectedProducts = new AbonementModel(new Abonements("", "", "", "", 0, 0));

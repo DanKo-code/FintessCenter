@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FitnessCenter.ViewModel"
              
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             
              xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
              
              mc:Ignorable="d" 
@@ -31,7 +33,6 @@
 
             <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="0">
                 <Button Content="Абонементы" Margin="10" Width="100" Height="30"/>
-                <Button Content="Аренды" Margin="10" Width="100" Height="30"/>
                 <Button Content="Пользователи" Margin="10" Width="100" Height="30"/>
             </StackPanel>
 
@@ -95,19 +96,25 @@
                 <StackPanel VerticalAlignment="Center"  Grid.Column="0">
                     <Button Command="{Binding Deselect}" Content="Снять выбор" Margin="10"/>
                     <Button Command="{Binding AddAbonement}" Content="Добавить" Margin="10"/>
-                    <Button Content="Поиск" Margin="10"/>
+                    <TextBox Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"  Margin="10">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding SearchAbonementByName}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center"  Grid.Column="1">
                     <Button Command="{Binding RemoveAbonement}" Content="Удалить" Margin="10"/>
-                    <Button Content="Филтр" Margin="10"/>
+                    <Button  Content="Филтр" Margin="10"/>
                 </StackPanel>
             </Grid>
         </Grid>
 
         <GridSplitter Width="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 
-        <ListView  SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding AbonementsList}" Background="Green"  Grid.Column="2">
+        <ListView  SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding SearchedList}" Background="Green"  Grid.Column="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название">

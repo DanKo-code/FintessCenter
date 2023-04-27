@@ -24,5 +24,10 @@ namespace FitnessCenter.Views.Windows.Main.UserControls.AdminPanel
         {
             InitializeComponent();
         }
+
+        private void TextBox_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
     }
 }

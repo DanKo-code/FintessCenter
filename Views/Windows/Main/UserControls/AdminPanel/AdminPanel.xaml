@@ -11,12 +11,8 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-
-    <UserControl.DataContext>
-        <vm:AdminPanelViewModel/>
-    </UserControl.DataContext>
-    
-    <Grid DataContext="{Binding AdminDataContext}">
+ 
+    <Grid x:Name="AdminContext">
 
         <!--<Grid.DataContext>
             <vm:AdminPanelViewModel/>
@@ -88,7 +84,7 @@
                     
                     <StackPanel Margin="10">
                         <Image Margin="10" Source="{Binding Photo, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Button Command="{Binding SetPhoto}" Margin="10" Content="Добавить фото" DataContext="{Binding AdminDataContext}">
+                        <Button Command="{Binding SetPhoto}" Margin="10" Content="Добавить фото" x:Name="SetImgButton">
                         </Button>
                     </StackPanel>
                 </Grid>
@@ -127,6 +123,7 @@
                         <ComboBoxItem Content="Время посещений"/>
                         <ComboBoxItem Content="Доступное кол-во"/>
                     </ComboBox>
+                    <Button Command="{Binding SaveAllChanges}" Content="Сохранить все изменения"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -209,7 +206,14 @@
                     </GridViewColumn>
 
                     <GridViewColumn Header="Фото:">
-
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Photo}" 
+                                           Width="50"
+                                           Height="50"
+                                           Margin="10,0,0,0"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
 

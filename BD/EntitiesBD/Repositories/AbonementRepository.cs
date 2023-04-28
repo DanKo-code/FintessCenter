@@ -55,6 +55,31 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
             }
         }
 
+        public bool SaveAllChanges(List<Abonements> list)
+        {
+            try
+            {
+                foreach (Abonements item in list)
+                {
+                    var temp = context.Abonements.Where(x => x.Id == item.Id);
+
+                    Abonements res = temp.FirstOrDefault();
+
+                    if (!item.AbonementsEquals(res))
+                    {
+                        res.ResetData(item);
+                    }
+                }
+
+                context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
 
 

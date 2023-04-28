@@ -30,24 +30,6 @@ namespace FitnessCenter.ViewModel
 
         #region Accessors (helpers for ui design)
 
-        #region AdminDataContext
-        private object _adminDataContext;
-
-        public object AdminDataContext
-        {
-            get => _adminDataContext;
-
-            set
-            {
-                if (_adminDataContext != value)
-                {
-                    _adminDataContext = value;
-                    OnPropertyChanged(nameof(AdminDataContext));
-                }
-            }
-        }
-        #endregion
-
         #region AbonementTitle
         private List<Abonements> _abonementTitle;
 
@@ -102,25 +84,9 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-        #region ImageUrl
-        private string _imageUrl;
-
-        public string ImageUrl
-        {
-            get => _imageUrl;
-
-            set
-            {
-                if (_imageUrl != value)
-                {
-                    _imageUrl = value;
-                    OnPropertyChanged(nameof(ImageUrl));
-                }
-            }
-        }
         #endregion
 
-        #endregion
+
 
         #region Commands
 
@@ -262,7 +228,6 @@ namespace FitnessCenter.ViewModel
         {
             return true;
         }
-
         private void OnSetPhotoCommand(object p)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -271,13 +236,27 @@ namespace FitnessCenter.ViewModel
             {
                 try
                 {
-                    ImageUrl = openFileDialog.FileName;
+                    SelectedProducts.Photo = openFileDialog.FileName;
                 }
                 catch
                 {
                     MessageBox.Show("Выберите файл подходящего формата.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+        #endregion
+
+        #region SaveAllChanges
+        public ICommand SaveAllChanges { get; }
+
+        private bool CanSaveAllChangesCommand(object p)
+        {
+            return true;
+        }
+        private void OnSaveAllChangesCommand(object p)
+        {
+            context.AbonementRepo.SaveAllChanges(AbonementsList.ToList());
+            MessageBox.Show("Все удачно сохранено!");
         }
         #endregion
 
@@ -294,6 +273,8 @@ namespace FitnessCenter.ViewModel
 
             SetPhoto = new RelayCommand(OnSetPhotoCommand, CanSetPhotoCommand);
 
+            SaveAllChanges = new RelayCommand(OnSaveAllChangesCommand, CanSaveAllChangesCommand);
+
             //сразу загрузил даынне
             context = new UnitOfWork();
 
@@ -304,11 +285,6 @@ namespace FitnessCenter.ViewModel
 
             //на начальном этапе
             SelectedProducts = new Abonements();
-
-
-            //Устанавливаем начальный dataContext
-            AdminDataContext = this;
-
 
         }
     }

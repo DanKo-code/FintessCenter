@@ -118,6 +118,19 @@ namespace FitnessCenter.BD.EntitiesBD
             Photo = "";
         }
 
+        public void ResetData(Abonements some)
+        {
+            Id = some.Id;
+            Title = some.Title;
+            Age = some.Age;
+            Validity = some.Validity;
+            VisitingTime = some.VisitingTime;
+            Amount = some.Amount;
+
+            Price = some.Price;
+            Photo = some.Photo;
+        }
+
         public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
         {
             Id = Guid.NewGuid();
@@ -131,6 +144,24 @@ namespace FitnessCenter.BD.EntitiesBD
             Photo = photo;
         }
 
+        public bool AbonementsEquals(Abonements obj)
+        {
+            if (
+                Id == obj.Id &&
+            Title == obj.Title &&
+            Age == obj.Age &&
+            Validity == obj.Validity &&
+            VisitingTime == obj.VisitingTime &&
+            Amount == obj.Amount &&
 
+            Price == obj.Price &&
+            Photo == obj.Photo
+                ) 
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

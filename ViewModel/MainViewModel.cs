@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using FitnessCenter.Models;
 using FitnessCenter.BD.EntitiesBD;
 
 namespace FitnessCenter.ViewModel
@@ -58,32 +57,15 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region AbonementItems
-        private List<AbonementModel> _abonementItems = new List<AbonementModel>
+        private List<Abonements> _abonementItems = new List<Abonements>
         {
-            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
-            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
-            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
-            new AbonementModel(new Abonements("GYM_3","18","BLA","BLA",100,17000)),
-
-
-            //new AbonementModel{ Name = "Взрослая карта на 1 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 2 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 3 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 4 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 5 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 6 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 7 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 8 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 9 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 10 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 11 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 12 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 13 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 14 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
-            //new AbonementModel{ Name = "Взрослая карта на 15 месяца", Age = 14, Amount = 0, Price=17000, Validity = 3, VisitingTime = 17},
+            new Abonements(),
+            new Abonements(),
+            new Abonements(),
+            new Abonements(),
         };
 
-        public List<AbonementModel> AbonementItems
+        public List<Abonements> AbonementItems
         {
             get => _abonementItems;
 

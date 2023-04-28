@@ -17,7 +17,7 @@ namespace FitnessCenter.BD
         public DbSet<Clients> Clients { get; set; }
         public DbSet<Orders> Orders { get; set; }
 
-        public BDContext() => Database.EnsureCreated();
+        //public BDContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

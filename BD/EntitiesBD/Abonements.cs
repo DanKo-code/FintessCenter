@@ -1,6 +1,7 @@
 ﻿using FitnessCenter.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,12 @@ namespace FitnessCenter.BD.EntitiesBD
     {
         private Guid _id;
         private string _title;
-        private string _age;
+        private int _age;
         private string _validity;
         private string _visitingTime;
         private int _amount;
         private int _price;
+        private string _photo;
 
 
         public Guid Id 
@@ -38,7 +40,7 @@ namespace FitnessCenter.BD.EntitiesBD
                 OnPropertyChanged("Title");
             }
         }
-        public string Age 
+        public int Age 
         {
             get => _age;
 
@@ -78,7 +80,18 @@ namespace FitnessCenter.BD.EntitiesBD
                 OnPropertyChanged("Amount");
             }
         }
-        //public string Photo { get; set; }
+
+        public string Photo 
+        {
+            get => _photo;
+
+            set
+            {
+                _photo = value;
+                OnPropertyChanged("Photo");
+            }
+        }
+
         public int Price 
         {
             get => _price;
@@ -92,9 +105,20 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public ICollection<Orders> Orders { get; set; }
 
-        //public Abonements() { }
+        public Abonements() 
+        {
+            Id = Guid.NewGuid();
+            Title = "";
+            Age = 0;
+            Validity = "";
+            VisitingTime = "";
+            Amount = 0;
 
-        public Abonements(string title, string age, string validity, string visitingTime, int amount, int price)
+            Price = 0;
+            Photo = "";
+        }
+
+        public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
         {
             Id = Guid.NewGuid();
             Title = title;
@@ -104,6 +128,7 @@ namespace FitnessCenter.BD.EntitiesBD
             Amount = amount;
 
             Price = price;
+            Photo = photo;
         }
 
 

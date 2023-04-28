@@ -1,7 +1,7 @@
 ﻿using FitnessCenter.BD.EntitiesBD;
 using FitnessCenter.BD.EntitiesBD.Repositories;
 using FitnessCenter.Core;
-using FitnessCenter.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace FitnessCenter.ViewModel
 {
@@ -22,14 +24,29 @@ namespace FitnessCenter.ViewModel
         //Ебанутая система
         bool canAdd = true;
 
-
         //Список абонементов
         public ObservableCollection<Abonements> AbonementsList { get; set; }
         public ObservableCollection<Abonements> SearchedList { get; set; }
-        
-
 
         #region Accessors (helpers for ui design)
+
+        #region AdminDataContext
+        private object _adminDataContext;
+
+        public object AdminDataContext
+        {
+            get => _adminDataContext;
+
+            set
+            {
+                if (_adminDataContext != value)
+                {
+                    _adminDataContext = value;
+                    OnPropertyChanged(nameof(AdminDataContext));
+                }
+            }
+        }
+        #endregion
 
         #region AbonementTitle
         private List<Abonements> _abonementTitle;
@@ -85,6 +102,24 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ImageUrl
+        private string _imageUrl;
+
+        public string ImageUrl
+        {
+            get => _imageUrl;
+
+            set
+            {
+                if (_imageUrl != value)
+                {
+                    _imageUrl = value;
+                    OnPropertyChanged(nameof(ImageUrl));
+                }
+            }
+        }
+        #endregion
+
         #endregion
 
         #region Commands
@@ -101,15 +136,16 @@ namespace FitnessCenter.ViewModel
         {
             //Взять поля из формы
             string title = SelectedProducts.Title;
-            string age = SelectedProducts.Age;
+            int age = SelectedProducts.Age;
             string validity = SelectedProducts.Validity;
             string visitingTime = SelectedProducts.VisitingTime;
             int amount = SelectedProducts.Amount;
             int price = SelectedProducts.Price;
+            string photo = SelectedProducts.Photo;
 
-            Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price);
+            Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price, photo);
             
-            SelectedProducts = new Abonements("", "", "", "", 0, 0);
+            SelectedProducts = new Abonements();
 
             AbonementsList.Add(temp);
             SearchedList.Add(temp);
@@ -140,7 +176,7 @@ namespace FitnessCenter.ViewModel
 
         private void OnDeselectCommand(object p)
         {
-            SelectedProducts = new Abonements("", "", "", "", 0, 0);
+            SelectedProducts = new Abonements();
 
             AbonementsList.Add(SelectedProducts);
             AbonementsList.RemoveAt(AbonementsList.Count - 1);
@@ -196,6 +232,55 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region SortAbonementByName
+        public ICommand SortAbonementByName { get; }
+
+        private bool CanSortAbonementByNameCommand(object p)
+        {
+            //return !canAdd;
+
+            return true;
+        }
+
+        private void OnSortAbonementByNameCommand(object p)
+        {
+            var temp = SearchedList.OrderBy(x => x.Title).ToList();
+
+            SearchedList.Clear();
+
+            foreach (var item in temp)
+            {
+                SearchedList.Add(item);
+            } 
+        }
+        #endregion
+
+        #region SetPhoto 
+        public ICommand SetPhoto { get; }
+
+        private bool CanSetPhotoCommand(object p)
+        {
+            return true;
+        }
+
+        private void OnSetPhotoCommand(object p)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image|*.jpg;*.jpeg;*.png;";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    ImageUrl = openFileDialog.FileName;
+                }
+                catch
+                {
+                    MessageBox.Show("Выберите файл подходящего формата.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        #endregion
+
         #endregion
 
         public AdminPanelViewModel()
@@ -204,6 +289,10 @@ namespace FitnessCenter.ViewModel
             Deselect = new RelayCommand(OnDeselectCommand, CanDeselectCommand);
             RemoveAbonement = new RelayCommand(OnRemoveAbonementCommand, CanRemoveAbonementCommand);
             SearchAbonementByName = new RelayCommand(OnSearchAbonementByNameCommand, CanSearchAbonementByNameCommand);
+
+            SortAbonementByName = new RelayCommand(OnSortAbonementByNameCommand, CanSortAbonementByNameCommand);
+
+            SetPhoto = new RelayCommand(OnSetPhotoCommand, CanSetPhotoCommand);
 
             //сразу загрузил даынне
             context = new UnitOfWork();
@@ -214,10 +303,11 @@ namespace FitnessCenter.ViewModel
             SearchedList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
             //на начальном этапе
-            SelectedProducts = new Abonements("", "", "", "", 0, 0);
+            SelectedProducts = new Abonements();
 
 
-
+            //Устанавливаем начальный dataContext
+            AdminDataContext = this;
 
 
         }

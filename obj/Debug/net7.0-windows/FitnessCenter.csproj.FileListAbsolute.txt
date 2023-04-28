@@ -77,3 +77,7 @@ D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-w
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\Search.g.cs
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\Search.baml
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Humanizer.dll
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Mono.TextTemplating.dll

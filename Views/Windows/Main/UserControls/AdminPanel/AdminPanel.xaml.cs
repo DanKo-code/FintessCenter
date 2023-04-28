@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace FitnessCenter.Views.Windows.Main.UserControls.AdminPanel
 {
     /// <summary>
@@ -23,11 +26,13 @@ namespace FitnessCenter.Views.Windows.Main.UserControls.AdminPanel
         public AdminPanel()
         {
             InitializeComponent();
-        }
 
-        private void TextBox_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
 
         }
+
+        //private void TextBox_Executed(object sender, ExecutedRoutedEventArgs e)
+        //{
+
+        //}
     }
 }

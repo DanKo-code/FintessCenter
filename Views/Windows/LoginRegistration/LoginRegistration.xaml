@@ -8,11 +8,14 @@
         xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
         xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.LoginRegistration.UserControls"
         
+        
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        
         mc:Ignorable="d"       
         Title="LoginRegistration" Height="450" Width="800">
 
     <Window.DataContext>
-        <vm:LoginRegistrationViewModel/>
+        <vm:LoginRegistrationViewModel x:Name ="LogRegVM"/>
     </Window.DataContext>
     
     <Grid>

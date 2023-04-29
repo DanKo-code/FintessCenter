@@ -278,7 +278,7 @@ namespace FitnessCenter.ViewModel
             //сразу загрузил даынне
             context = new UnitOfWork();
 
-            //заполнил смотрящего //TODO добавить 
+            //заполнил смотрящего
             AbonementsList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
             SearchedList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());

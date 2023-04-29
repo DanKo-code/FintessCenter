@@ -14,7 +14,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         private bool disposed = false;
 
         private AbonementRepository abonementRepo;
-        
+        private ClientRepository clientRepo;
 
 
         public AbonementRepository AbonementRepo
@@ -27,12 +27,16 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             }
         }
 
-
+        public ClientRepository ClientRepo
+        {
+            get
+            {
+                if(clientRepo == null)
+                    clientRepo = new ClientRepository();
+                return clientRepo;
+            }
+        }
         
-
-
-
-
         public void Save() => context.SaveChanges();
 
 

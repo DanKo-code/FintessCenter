@@ -11,15 +11,15 @@
 
         <StackPanel Margin="0 0 0 40">
             <Label Content="Логин"/>
-            <TextBox/>
+            <TextBox Text="{Binding SignInLogin, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Margin="0 0 0 40" >
-            <Label Content="Пароль"/> 
-            <TextBox/>
+            <Label Content="Пароль"/>
+            <TextBox Text="{Binding SignInPassword, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <Button Command="{Binding GoMainCommand}" Style="{StaticResource LoginButtonStyle}" Content="Войти"/>
+        <Button Command="{Binding SignIn}" Style="{StaticResource LoginButtonStyle}" Content="Войти"/>
 
     </StackPanel>
 </UserControl>

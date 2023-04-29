@@ -11,10 +11,10 @@ namespace FitnessCenter.BD.EntitiesBD
     {
         private Guid _id;
         private string _name;
-        private int _surname;
+        private string _surname;
         private string _login;
         private string _email;
-        private int _phone;
+        private string _phone;
         private int _role;
         private string _password;
 
@@ -38,14 +38,14 @@ namespace FitnessCenter.BD.EntitiesBD
                 OnPropertyChanged("Name");
             }
         }
-        public int Surname
+        public string SurName
         {
             get => _surname;
 
             set
             {
                 _surname = value;
-                OnPropertyChanged("Surname");
+                OnPropertyChanged("SurName");
             }
         }
         public string Login
@@ -68,7 +68,7 @@ namespace FitnessCenter.BD.EntitiesBD
                 OnPropertyChanged("Email");
             }
         }
-        public int Phone
+        public string Phone
         {
             get => _phone;
 
@@ -103,7 +103,17 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public ICollection<Orders> Orders { get; set; }
 
-        public Clients() => Orders = new List<Orders>();
+        public Clients() { }
+
+        public Clients(string name, string surname, string login, string email, string phone, string password)
+        {
+            this.Name = name;
+            this.SurName = surname;
+            this.Login = login;
+            this.Email = email;
+            this.Phone = phone;
+            this.Password = password;
+        }
     }
 }
 

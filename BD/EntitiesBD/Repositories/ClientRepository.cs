@@ -44,20 +44,20 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             }
         }
 
-        public bool CheckPassword(string clientLogin, string clientPassword)
+        public Clients CheckPassword(string clientLogin, string clientPassword)
         {
             try
             {
                 Clients temp = context.Clients.FirstOrDefault(x => x.Login == clientLogin);
 
                 if (temp.Password == clientPassword) 
-                    return true;
+                    return temp;
 
-                return false;
+                return null;
             }
             catch
             {
-                return false;
+                return null;
             }
         }
     }

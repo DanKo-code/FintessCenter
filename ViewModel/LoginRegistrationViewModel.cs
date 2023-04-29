@@ -162,19 +162,14 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-        #region GoMain
-        public ICommand GoMainCommand { get; }
-
-        private bool CanGoMainCommand(object p) => true;
-
-        private void OnGoMainCommand(object p)
+        private void GoMain(Clients client)
         {
-            Main main = new Main();
+            Main main = new Main(client);
             main.Show();
 
             foreach (Window window in Application.Current.Windows)
             {
-                if(window is LoginRegistration)
+                if (window is LoginRegistration)
                 {
                     window.Close();
                     break;
@@ -182,7 +177,6 @@ namespace FitnessCenter.ViewModel
             }
 
         }
-        #endregion
 
         //Для регистрации
 
@@ -229,13 +223,17 @@ namespace FitnessCenter.ViewModel
 
         private void OnSignInCommand(object p)
         {
+            Clients temp;
+
             if (!context.ClientRepo.CheckLogin(SignInLogin))
             {
                 MessageBox.Show("Неверный логин!");
                 return;
             }
 
-            if(!context.ClientRepo.CheckPassword(SignInLogin, SignInPassword))
+            temp = context.ClientRepo.CheckPassword(SignInLogin, SignInPassword);
+
+            if (temp == null)
             {
                 MessageBox.Show("Неверный пароль!");
                 return;
@@ -243,7 +241,7 @@ namespace FitnessCenter.ViewModel
 
             MessageBox.Show("Заходи, внучёк");
 
-            OnGoMainCommand(null);
+            GoMain(temp);
         }
         #endregion
 
@@ -253,7 +251,7 @@ namespace FitnessCenter.ViewModel
         {
             ShowLoginCommand = new RelayCommand(OnShowLoginCommand, CanShowLoginCommand);
             ShowRegisterCommand = new RelayCommand(OnShowRegisterCommand, CanShowRegisterCommand);
-            GoMainCommand = new RelayCommand(OnGoMainCommand, CanGoMainCommand);
+            
 
             //Проверка валидности при регистрации
 

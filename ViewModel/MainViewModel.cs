@@ -20,6 +20,24 @@ namespace FitnessCenter.ViewModel
 
         #region Accessors (helpers for ui design)
 
+        #region Client
+        private Clients _client;
+
+        public Clients Client
+        {
+            get => _client;
+
+            set
+            {
+                if (_client != value)
+                {
+                    _client = value;
+                    OnPropertyChanged(nameof(Client));
+                }
+            }
+        }
+        #endregion
+
         #region HeaderText
         private string _headerText = "Главная";
 
@@ -219,8 +237,10 @@ namespace FitnessCenter.ViewModel
 
         #endregion
 
-        public MainViewModel()
+        public MainViewModel(Clients client)
         {
+            Client = client;
+
             LeftImageCpmmand = new RelayCommand(OnLeftImageCommand, CanLeftImageCommand);
             RightImageCpmmand = new RelayCommand(OnRightImageCommand, CanRightImageCommand);
             ShowAbonementsCore = new RelayCommand(OnShowAbonementsCoreCommand, CanShowAbonementsCoreCommand);

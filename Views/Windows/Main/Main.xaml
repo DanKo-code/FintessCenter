@@ -13,10 +13,7 @@
         mc:Ignorable="d"
         Title="Main" Height="450" Width="800">
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
-
+  
     <DockPanel>
         <Grid DockPanel.Dock="Top" Height="100" Background="#CCFF00">
             <Grid.ColumnDefinitions>
@@ -44,6 +41,7 @@
                 <Button Command="{Binding ShowForMain}" Content="Главная" Margin="40 20 40 20" Width="100" Height="40"/>
                 <Button Command="{Binding ShowAbonementsCore}" Content="Абонементы" Margin="40 20 40 20" Width="100" Height="40"/>
                 <Button Command="{Binding ShowAdminPanel}" Content="Панель админа" Margin="40 20 40 20" Width="100" Height="40"/>
+                <Button Content="Профиль" Margin="40 20 40 20" Width="100" Height="40"/>
             </StackPanel>
         </Border>
 

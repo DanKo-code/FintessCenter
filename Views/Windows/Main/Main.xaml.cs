@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FitnessCenter.BD.EntitiesBD;
+using FitnessCenter.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace FitnessCenter.Views.Windows.Main
     /// </summary>
     public partial class Main : Window
     {
-        public Main()
+        public Main(Clients client)
         {
             InitializeComponent();
+
+            this.DataContext = new MainViewModel(client);
         }
     }
 }

@@ -2,6 +2,7 @@
 using FitnessCenter.BD.EntitiesBD;
 using FitnessCenter.BD.EntitiesBD.Repositories;
 using FitnessCenter.Core;
+using FitnessCenter.Helpers;
 using FitnessCenter.Views.Windows.LoginRegistration;
 using FitnessCenter.Views.Windows.Main;
 using System;
@@ -164,6 +165,8 @@ namespace FitnessCenter.ViewModel
 
         private void GoMain(Clients client)
         {
+            CurrentClient.client = client;
+
             Main main = new Main(client);
             main.Show();
 

@@ -25,10 +25,7 @@ namespace FitnessCenter.Views.Windows.LoginRegistration
         {
             InitializeComponent();
 
-            using (BDContext db = new BDContext())
-            {
-
-            }
+            
             
         }
     }

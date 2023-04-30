@@ -92,7 +92,7 @@ namespace FitnessCenter.ViewModel
                 if (_abonementItems != value)
                 {
                     _abonementItems = value;
-                    OnPropertyChanged(nameof(SliderImage));
+                    OnPropertyChanged(nameof(AbonementItems));
                 }
             }
         }
@@ -152,7 +152,23 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ProfileVisibility
+        private Visibility _profileVisibility = Visibility.Collapsed;
 
+        public Visibility ProfileVisibility
+        {
+            get => _profileVisibility;
+
+            set
+            {
+                if (_profileVisibility != value)
+                {
+                    _profileVisibility = value;
+                    OnPropertyChanged(nameof(ProfileVisibility));
+                }
+            }
+        }
+        #endregion
 
         #endregion
 
@@ -203,6 +219,7 @@ namespace FitnessCenter.ViewModel
             AbonementsCoreVisibility = Visibility.Visible;
             ForMainVisibility = Visibility.Collapsed;
             AdminPanelVisibility = Visibility.Collapsed;
+            ProfileVisibility = Visibility.Collapsed;
             HeaderText = "Абонементы";
         }
         #endregion
@@ -217,6 +234,7 @@ namespace FitnessCenter.ViewModel
             AbonementsCoreVisibility = Visibility.Collapsed;
             ForMainVisibility = Visibility.Visible;
             AdminPanelVisibility = Visibility.Collapsed;
+            ProfileVisibility = Visibility.Collapsed;
             HeaderText = "Главная";
         }
         #endregion
@@ -230,8 +248,24 @@ namespace FitnessCenter.ViewModel
         {
             AbonementsCoreVisibility = Visibility.Collapsed;
             ForMainVisibility = Visibility.Collapsed;
+            ProfileVisibility = Visibility.Collapsed;
             AdminPanelVisibility = Visibility.Visible;
             HeaderText = "Главная";
+        }
+        #endregion
+
+        #region ShowProfile
+        public ICommand ShowProfile { get; }
+
+        private bool CanShowProfileCommand(object p) => true;
+
+        private void OnShowProfileCommand(object p)
+        {
+            AbonementsCoreVisibility = Visibility.Collapsed;
+            ForMainVisibility = Visibility.Collapsed;
+            AdminPanelVisibility = Visibility.Collapsed;
+            ProfileVisibility = Visibility.Visible;
+            HeaderText = "Профиль";
         }
         #endregion
 
@@ -245,6 +279,7 @@ namespace FitnessCenter.ViewModel
             RightImageCpmmand = new RelayCommand(OnRightImageCommand, CanRightImageCommand);
             ShowAbonementsCore = new RelayCommand(OnShowAbonementsCoreCommand, CanShowAbonementsCoreCommand);
             ShowForMain = new RelayCommand(OnShowForMainCommand, CanShowForMainCommand);
+            ShowProfile = new RelayCommand(OnShowProfileCommand, CanShowProfileCommand);
             ShowAdminPanel = new RelayCommand(OnShowAdminPanelCommand, CanShowAdminPanelCommand);
 
             //Найти словарь

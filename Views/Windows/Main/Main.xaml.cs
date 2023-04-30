@@ -1,4 +1,5 @@
 ﻿using FitnessCenter.BD.EntitiesBD;
+using FitnessCenter.Helpers;
 using FitnessCenter.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace FitnessCenter.Views.Windows.Main
             InitializeComponent();
 
             this.DataContext = new MainViewModel(client);
+
+            CurrentClient.client = client;
         }
     }
 }

@@ -60,5 +60,25 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
                 return null;
             }
         }
+
+        public bool SaveAllChanges(Clients client)
+        {
+            try
+            {
+                Clients temp = context.Clients.FirstOrDefault(x => x.Id == client.Id);
+
+                if (!temp.ClientEquals(client))
+                {
+                    temp.ResetData(client);
+                }
+
+                context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

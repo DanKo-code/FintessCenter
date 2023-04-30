@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="FitnessCenter.Views.Windows.Main.UserControls.Profile.Profile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.Profile"
+             
+             xmlns:v="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.Abonements"
+             xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
+             
+             xmlns:h="clr-namespace:FitnessCenter.Helpers"
+             
+             
+             d:DataContext="{d:DesignInstance Type=vm:ProfileViewModel}"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White" x:Name="Profilee">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Margin="10" Source="/Resources/Images/1.jpg"/>
+
+                <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                    <StackPanel Margin="10">
+                        <Label Content="Имя"/>
+                        <TextBox Text="{Binding CurrentClient.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <Label Content="Фамилия"/>
+                        <TextBox Text="{Binding CurrentClient.SurName, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <StackPanel VerticalAlignment="Center" Grid.Row="1">
+                <StackPanel Margin="10">
+                    <Label Content="Логин"/>
+                    <TextBox Text="{Binding CurrentClient.Login, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <Label Content="Пароль"/>
+                    <TextBox Text="{Binding CurrentClient.Password, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <Label Content="Почта"/>
+                    <TextBox Text="{Binding CurrentClient.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <Label Content="Телефон"/>
+                    <TextBox Text="{Binding CurrentClient.Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Command="{Binding SaveAllChanges}" Grid.Row="2" Content="сохранить" Height="20" Width="300" Margin="10"/>
+        </Grid>
+
+        <!--Коллекция абонементов-->
+        <ListView Grid.Column="1" Background="Transparent" ItemsSource="{Binding AbonementItems}"
+                  HorizontalContentAlignment="Center" 
+                      VerticalContentAlignment="Center">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate >
+                    <UniformGrid Columns="1" />
+                    <!--<StackPanel Orientation="Horizontal"/>-->
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <v:AbonementItem/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

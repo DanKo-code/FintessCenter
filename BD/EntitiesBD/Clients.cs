@@ -1,6 +1,7 @@
 ﻿using FitnessCenter.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,6 +114,35 @@ namespace FitnessCenter.BD.EntitiesBD
             this.Email = email;
             this.Phone = phone;
             this.Password = password;
+        }
+
+        public bool ClientEquals(Clients obj)
+        {
+            if (
+                Id == obj.Id &&
+                Name == obj.Name &&
+            SurName == obj.SurName &&
+            Login == obj.Login &&
+            Email == obj.Email &&
+            Phone == obj.Phone &&
+            Password == obj.Password 
+                )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ResetData(Clients some)
+        {
+            Id = some.Id;
+            Name = some.Name;
+            SurName = some.SurName;
+            Login = some.Login;
+            Email = some.Email;
+            Phone = some.Phone;
+            Password = some.Password;
         }
     }
 }

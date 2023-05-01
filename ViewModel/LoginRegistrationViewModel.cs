@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -244,10 +246,23 @@ namespace FitnessCenter.ViewModel
 
             MessageBox.Show("Заходи, внучёк");
 
+            ////////////////////////////////////////////////////
+            ///
+            CurrentClient.client = temp;
+
+            var test = CurrentClient.client;
+
+            MessageBox.Show("Начало отправки!");
+            var mail = SMTP.CreateMail("FitnessCenter", "ilyinnik3@gmail.com", "danik2003globin@gmail.com", "Новая тема", "Ты зашел, голубчик :)");
+
+            SMTP.SendMail("smtp.gmail.com", 587, "ilyinnik3@gmail.com", "aojiuhowjilqvtnb", mail);
+            ////////////////////////////////////////////////////
+
             GoMain(temp);
         }
         #endregion
 
+        
         #endregion
 
         public LoginRegistrationViewModel()
@@ -268,6 +283,8 @@ namespace FitnessCenter.ViewModel
             //Для входа
 
             SignIn = new RelayCommand(OnSignInCommand, CanSignInCommand);
+
+            Helpers.CurrentClient.abonements = context.AbonementRepo.GetAllAbonements();
 
         }
     }

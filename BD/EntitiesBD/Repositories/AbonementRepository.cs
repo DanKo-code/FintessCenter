@@ -61,7 +61,7 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
             {
                 foreach (Abonements item in list)
                 {
-                    var temp = context.Abonements.Where(x => x.Id == item.Id);
+                    var temp = context.Abonements.Where(x => x.AbonementsId == item.AbonementsId);
 
                     Abonements res = temp.FirstOrDefault();
 

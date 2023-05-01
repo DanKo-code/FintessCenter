@@ -9,11 +9,16 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using FitnessCenter.BD.EntitiesBD;
+using FitnessCenter.Helpers;
+using FitnessCenter.BD;
+using FitnessCenter.BD.EntitiesBD.Repositories;
 
 namespace FitnessCenter.ViewModel
 {
     internal class MainViewModel : ObservableObject
     {
+        private UnitOfWork context;
+
         //Для слайдера
         List<string> SliderImages = new List<string>();
         int SliderImagesIndex = 0;
@@ -69,30 +74,6 @@ namespace FitnessCenter.ViewModel
                 {
                     _sliderImage = value;
                     OnPropertyChanged(nameof(SliderImage));
-                }
-            }
-        }
-        #endregion
-
-        #region AbonementItems
-        private List<Abonements> _abonementItems = new List<Abonements>
-        {
-            new Abonements(),
-            new Abonements(),
-            new Abonements(),
-            new Abonements(),
-        };
-
-        public List<Abonements> AbonementItems
-        {
-            get => _abonementItems;
-
-            set
-            {
-                if (_abonementItems != value)
-                {
-                    _abonementItems = value;
-                    OnPropertyChanged(nameof(AbonementItems));
                 }
             }
         }
@@ -221,6 +202,8 @@ namespace FitnessCenter.ViewModel
             AdminPanelVisibility = Visibility.Collapsed;
             ProfileVisibility = Visibility.Collapsed;
             HeaderText = "Абонементы";
+
+            CurrentClient.abonements = context.AbonementRepo.GetAllAbonements();
         }
         #endregion
 
@@ -297,6 +280,8 @@ namespace FitnessCenter.ViewModel
 
             if(SliderImages.Count > 0)
             SliderImage = SliderImages[0];
+
+            context = new UnitOfWork();
         }
     }
 }

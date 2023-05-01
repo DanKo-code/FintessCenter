@@ -10,5 +10,7 @@ namespace FitnessCenter.Helpers
     static class CurrentClient
     {
         public static Clients client;
+
+        public static List<Abonements> abonements;
     }
 }

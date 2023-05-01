@@ -13,6 +13,20 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
 
         public ClientRepository() => context = new BDContext();
 
+        //public bool ()
+        //{
+        //    try
+        //    {
+        //        context.Clients.Add(client);
+        //        context.SaveChanges();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+
         public bool AddClient(Clients client)
         {
             try
@@ -65,7 +79,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         {
             try
             {
-                Clients temp = context.Clients.FirstOrDefault(x => x.Id == client.Id);
+                Clients temp = context.Clients.FirstOrDefault(x => x.ClientsId == client.ClientsId);
 
                 if (!temp.ClientEquals(client))
                 {

@@ -10,13 +10,22 @@ namespace FitnessCenter.BD.EntitiesBD
     public class Orders
     {
         public Guid Id { get; set; }
-        //public Guid Id_User { get; set; }
-        //public Guid Id_Abonement { get; set; }
+       
+        public Guid AbonementsId { get; set; }
+        public Guid ClientsId { get; set; }
 
-        [NotMapped]
-        public Clients client { get; set; }
+        public Abonements Abonement { get; set; }
+        public Clients Client { get; set; }
 
-        [NotMapped]
-        public Abonements abonement { get; set; }
+        public Orders() { }
+
+        public Orders(Clients client, Abonements abonement)
+        {
+            Id = new Guid();
+
+            ClientsId = client.ClientsId;
+            AbonementsId = abonement.AbonementsId;
+            
+        }
     }
 }

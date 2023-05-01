@@ -20,7 +20,7 @@ namespace FitnessCenter.BD.EntitiesBD
         private string _photo;
 
 
-        public Guid Id 
+        public Guid AbonementsId
         {
             get => _id; 
 
@@ -107,7 +107,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public Abonements() 
         {
-            Id = Guid.NewGuid();
+            AbonementsId = Guid.NewGuid();
             Title = "";
             Age = 0;
             Validity = "";
@@ -120,7 +120,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public void ResetData(Abonements some)
         {
-            Id = some.Id;
+            AbonementsId = some.AbonementsId;
             Title = some.Title;
             Age = some.Age;
             Validity = some.Validity;
@@ -133,7 +133,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
         {
-            Id = Guid.NewGuid();
+            AbonementsId = Guid.NewGuid();
             Title = title;
             Age = age;
             Validity = validity;
@@ -147,7 +147,7 @@ namespace FitnessCenter.BD.EntitiesBD
         public bool AbonementsEquals(Abonements obj)
         {
             if (
-                Id == obj.Id &&
+                AbonementsId == obj.AbonementsId &&
             Title == obj.Title &&
             Age == obj.Age &&
             Validity == obj.Validity &&

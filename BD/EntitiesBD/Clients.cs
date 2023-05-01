@@ -19,7 +19,7 @@ namespace FitnessCenter.BD.EntitiesBD
         private int _role;
         private string _password;
 
-        public Guid Id
+        public Guid ClientsId
         {
             get => _id;
 
@@ -119,7 +119,7 @@ namespace FitnessCenter.BD.EntitiesBD
         public bool ClientEquals(Clients obj)
         {
             if (
-                Id == obj.Id &&
+                ClientsId == obj.ClientsId &&
                 Name == obj.Name &&
             SurName == obj.SurName &&
             Login == obj.Login &&
@@ -136,7 +136,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public void ResetData(Clients some)
         {
-            Id = some.Id;
+            ClientsId = some.ClientsId;
             Name = some.Name;
             SurName = some.SurName;
             Login = some.Login;

@@ -248,14 +248,14 @@ namespace FitnessCenter.ViewModel
 
             ////////////////////////////////////////////////////
             ///
-            CurrentClient.client = temp;
+            //CurrentClient.client = temp;
 
-            var test = CurrentClient.client;
+            //var test = CurrentClient.client;
 
-            MessageBox.Show("Начало отправки!");
-            var mail = SMTP.CreateMail("FitnessCenter", "ilyinnik3@gmail.com", "danik2003globin@gmail.com", "Новая тема", "Ты зашел, голубчик :)");
+            //MessageBox.Show("Начало отправки!");
+            //var mail = SMTP.CreateMail("FitnessCenter", "ilyinnik3@gmail.com", "danik2003globin@gmail.com", "Новая тема", "Ты зашел, голубчик :)");
 
-            SMTP.SendMail("smtp.gmail.com", 587, "ilyinnik3@gmail.com", "aojiuhowjilqvtnb", mail);
+            //SMTP.SendMail("smtp.gmail.com", 587, "ilyinnik3@gmail.com", "aojiuhowjilqvtnb", mail);
             ////////////////////////////////////////////////////
 
             GoMain(temp);

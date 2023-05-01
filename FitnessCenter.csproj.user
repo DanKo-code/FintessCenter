@@ -25,10 +25,13 @@
     <Compile Update="Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\Main\UserControls\AdminPanel\AbonementsPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\Main\UserControls\AdminPanel\AdminPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Windows\Main\UserControls\AdminPanel\Search.xaml.cs">
+    <Compile Update="Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\Main\UserControls\ForMain.xaml.cs">
@@ -39,6 +42,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Resources\AdminPanelView\AdminPanelView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\ImagesDictionary\Images.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -63,10 +69,13 @@
     <Page Update="Views\Windows\Main\UserControls\Abonements\AbonementsCore.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\Main\UserControls\AdminPanel\AbonementsPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\Main\UserControls\AdminPanel\AdminPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Windows\Main\UserControls\AdminPanel\Search.xaml">
+    <Page Update="Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\Main\UserControls\ForMain.xaml">

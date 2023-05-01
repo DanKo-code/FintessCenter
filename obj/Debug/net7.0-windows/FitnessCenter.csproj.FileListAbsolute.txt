@@ -74,8 +74,6 @@ D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-w
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\FitnessCenter.csproj.CopyComplete
-D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\Search.g.cs
-D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\Search.baml
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Humanizer.dll
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
@@ -83,3 +81,8 @@ D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-w
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\Profile\Profile.g.cs
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\Profile\Profile.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AbonementsPanel.g.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AbonementsPanel.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.g.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Resources\AdminPanelView\AdminPanelView.baml

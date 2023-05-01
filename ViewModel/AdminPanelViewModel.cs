@@ -1,10 +1,12 @@
 ﻿using FitnessCenter.BD.EntitiesBD;
 using FitnessCenter.BD.EntitiesBD.Repositories;
 using FitnessCenter.Core;
+using FitnessCenter.Views.Windows.Main.UserControls.AdminPanel;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,12 +14,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace FitnessCenter.ViewModel
 {
     internal class AdminPanelViewModel : ObservableObject
     {
+        ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
+
         //EF
         private UnitOfWork context;
 
@@ -79,6 +84,78 @@ namespace FitnessCenter.ViewModel
                 {
                     _searchString = value;
                     OnPropertyChanged(nameof(SearchString));
+                }
+            }
+        }
+        #endregion
+
+        #region AdminListView
+        private string _adminListView;
+
+        public string AdminListView
+        {
+            get => _adminListView;
+
+            set
+            {
+                if (_adminListView != value)
+                {
+                    _adminListView = value;
+                    OnPropertyChanged(nameof(AdminListView));
+                }
+            }
+        }
+        #endregion
+
+        #region AbonementsPanelVisibility
+        private Visibility _abonementsPanelVisibility = Visibility.Visible;
+
+        public Visibility AbonementsPanelVisibility
+        {
+            get => _abonementsPanelVisibility;
+
+            set
+            {
+                if (_abonementsPanelVisibility != value)
+                {
+                    _abonementsPanelVisibility = value;
+                    OnPropertyChanged(nameof(AbonementsPanelVisibility));
+                }
+            }
+        }
+        #endregion
+
+        #region OrdersPanelVisibility
+        private Visibility _ordersPanelVisibility = Visibility.Collapsed;
+
+        public Visibility OrdersPanelVisibility
+        {
+            get => _ordersPanelVisibility;
+
+            set
+            {
+                if (_ordersPanelVisibility != value)
+                {
+                    _ordersPanelVisibility = value;
+                    OnPropertyChanged(nameof(OrdersPanelVisibility));
+                }
+            }
+        }
+        #endregion
+
+        #region AdminPanelGridView
+        private GridView _adminPanelGridView;
+
+        public GridView AdminPanelGridView
+        {
+            get => _adminPanelGridView;
+
+            set
+            {
+                if (_adminPanelGridView != value)
+                {
+                    _adminPanelGridView = value;
+                    OnPropertyChanged(nameof(AdminPanelGridView));
                 }
             }
         }
@@ -260,6 +337,44 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ShowAbonementsPanel 
+        public ICommand ShowAbonementsPanel { get; }
+
+        private bool CanShowAbonementsPanelCommand(object p)
+        {
+            return true;
+        }
+        private void OnShowAbonementsPanelCommand(object p)
+        {
+            AbonementsPanelVisibility = Visibility.Visible;
+            OrdersPanelVisibility = Visibility.Collapsed;
+
+            //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
+
+            AdminPanelGridView = (GridView)GridPanelsDict["AbonementsGridView"];
+
+
+        }
+        #endregion
+
+        #region ShowOrdersPanel 
+        public ICommand ShowOrdersPanel { get; }
+
+        private bool CanShowOrdersPanelCommand(object p)
+        {
+            return true;
+        }
+        private void OnShowOrdersPanelCommand(object p)
+        {
+            OrdersPanelVisibility = Visibility.Visible;
+            AbonementsPanelVisibility= Visibility.Collapsed;
+
+            //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
+
+            AdminPanelGridView = (GridView)GridPanelsDict["OrdersGridView"];
+        }
+        #endregion
+
         #endregion
 
         public AdminPanelViewModel()
@@ -275,6 +390,12 @@ namespace FitnessCenter.ViewModel
 
             SaveAllChanges = new RelayCommand(OnSaveAllChangesCommand, CanSaveAllChangesCommand);
 
+            ShowAbonementsPanel = new RelayCommand(OnShowAbonementsPanelCommand, CanShowAbonementsPanelCommand);
+
+            ShowOrdersPanel = new RelayCommand(OnShowOrdersPanelCommand, CanShowOrdersPanelCommand);
+
+            //ChangeAdminPanelGridView = new RelayCommand(OnChangeAdminPanelGridViewCommand, CanChangeAdminPanelGridViewCommand);
+
             //сразу загрузил даынне
             context = new UnitOfWork();
 
@@ -285,6 +406,8 @@ namespace FitnessCenter.ViewModel
 
             //на начальном этапе
             SelectedProducts = new Abonements();
+
+            AdminPanelGridView = (GridView)GridPanelsDict["AbonementsGridView"];
 
         }
     }

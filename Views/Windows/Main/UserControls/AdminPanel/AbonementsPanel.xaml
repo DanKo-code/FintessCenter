@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="FitnessCenter.Views.Windows.Main.UserControls.AdminPanel.AbonementsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.AdminPanel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <StackPanel Margin="5">
+                <Label Content="Название:"/>
+                <TextBox Text="{Binding SelectedProducts.Title, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Возраст:"/>
+                <TextBox Text="{Binding SelectedProducts.Age, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Срок действия:"/>
+                <TextBox Text="{Binding SelectedProducts.Validity, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Время посещения:"/>
+                <TextBox Text="{Binding SelectedProducts.VisitingTime, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Доступное кол-во:"/>
+                <TextBox Text="{Binding SelectedProducts.Amount, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Включено:"/>
+                <ComboBox/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <Label Content="Стоимость:"/>
+                <TextBox Text="{Binding SelectedProducts.Price, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid VerticalAlignment="Center" Grid.Column="1">
+
+
+            <StackPanel Margin="10">
+                <Image Margin="10" Source="{Binding SelectedProducts.Photo, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Command="{Binding SetPhoto}" Margin="10" Content="Добавить фото" x:Name="SetImgButton">
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

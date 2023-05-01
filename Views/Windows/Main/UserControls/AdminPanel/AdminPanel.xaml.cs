@@ -26,17 +26,7 @@ namespace FitnessCenter.Views.Windows.Main.UserControls.AdminPanel
         public AdminPanel()
         {
             InitializeComponent();
-
-            var DC = new AdminPanelViewModel();
-
-            AdminContext.DataContext = DC;
-            SetImgButton.DataContext = DC;
-
         }
 
-        //private void TextBox_Executed(object sender, ExecutedRoutedEventArgs e)
-        //{
-
-        //}
     }
 }

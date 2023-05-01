@@ -49,7 +49,7 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:AbonementItem DataContext="{Binding CurrentClient}"/>
+                    <local:AbonementItem/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>

@@ -267,7 +267,7 @@ namespace FitnessCenter.ViewModel
 
             //Найти словарь
             var imagesDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/ImagesDictionary/Images.xaml");
-            
+
             //Переписать с него данные
             if (imagesDict != null)
             {
@@ -278,10 +278,11 @@ namespace FitnessCenter.ViewModel
                 }
             }
 
-            if(SliderImages.Count > 0)
-            SliderImage = SliderImages[0];
+            if (SliderImages.Count > 0)
+                SliderImage = SliderImages[0];
 
             context = new UnitOfWork();
         }
+        
     }
 }

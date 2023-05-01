@@ -9,14 +9,18 @@
              
              xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
              
+             xmlns:uc="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.AdminPanel"
+             
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=vm:AdminPanelViewModel}"
              d:DesignHeight="500" d:DesignWidth="800">
- 
-    <Grid x:Name="AdminContext">
 
-        <!--<Grid.DataContext>
-            <vm:AdminPanelViewModel/>
-        </Grid.DataContext>-->
+    <UserControl.Resources>
+        <local:AdminPanelViewModel x:Key="ViewModell"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="AdminContext" DataContext="{Binding Source={StaticResource ViewModell}}">
+
+        
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -32,11 +36,13 @@
             </Grid.RowDefinitions>
 
             <StackPanel Margin="10" Orientation="Horizontal" Grid.Row="0">
-                <Button Content="Абонементы" Margin="10" Width="100" Height="30"/>
+                <Button Command="{Binding ShowAbonementsPanel}" Content="Абонементы" Margin="10" Width="100" Height="30"/>
+                <Button Command="{Binding ShowOrdersPanel}" Content="Заказы" Margin="10" Width="100" Height="30"/>
                 <Button Content="Пользователи" Margin="10" Width="100" Height="30"/>
+                
             </StackPanel>
 
-            <Grid Grid.Row="1" DataContext="{Binding SelectedProducts}">
+            <!--<Grid Grid.Row="1" DataContext="{Binding SelectedProducts}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -88,7 +94,10 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-            </Grid>
+            </Grid>-->
+
+            <uc:AbonementsPanel DataContext="{Binding Source={StaticResource ViewModell}}" Grid.Row="1" Visibility="{Binding AbonementsPanelVisibility}"/>
+            <uc:OrdersPanel DataContext="{Binding Source={StaticResource ViewModell}}" Grid.Row="1" Visibility="{Binding OrdersPanelVisibility}"/>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -130,97 +139,10 @@
 
         <GridSplitter Width="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
 
-        <ListView  SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding SearchedList}" Background="Green"  Grid.Column="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Название">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Title}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+        <!--<ListView SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding SearchedList}" Background="Green"  Grid.Column="2" View="{Binding AdminPanelGridView}">
+        </ListView>-->
 
-                    <GridViewColumn Header="Срок действия">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Validity}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Время посещения:">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding VisitingTime}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Доступное кол-во:">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Amount}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Включено:">
-                        <!--<GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding VisitingTime}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>-->
-                    </GridViewColumn>
-                    
-                    <GridViewColumn Header="Стоимость:">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Price}" 
-                                           TextWrapping="Wrap" 
-                                           FontSize="16"
-                                           Foreground="#99aab5" 
-                                           Margin="10,0,0,0"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Фото:">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Photo}" 
-                                           Width="50"
-                                           Height="50"
-                                           Margin="10,0,0,0"></Image>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-
-                
-            </ListView.View>
-            
-        </ListView>
+        
 
     </Grid>
 </UserControl>

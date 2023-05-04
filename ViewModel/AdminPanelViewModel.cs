@@ -21,7 +21,7 @@ namespace FitnessCenter.ViewModel
 {
     internal class AdminPanelViewModel : ObservableObject
     {
-        ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
+        //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
 
         //EF
         private UnitOfWork context;
@@ -33,7 +33,32 @@ namespace FitnessCenter.ViewModel
         public ObservableCollection<Abonements> AbonementsList { get; set; }
         public ObservableCollection<Abonements> SearchedList { get; set; }
 
+        //Список заказов
+        public ObservableCollection<Orders> OrdersList { get; set; }
+
+
+
+        //public ObservableCollection<Orders> OrdersList { get; set; }
+
         #region Accessors (helpers for ui design)
+
+        //#region OrdersList
+        //private ObservableCollection<Orders> _ordersList;
+
+        //public ObservableCollection<Orders> OrdersList
+        //{
+        //    get => _ordersList;
+
+        //    set
+        //    {
+        //        if (_ordersList != value)
+        //        {
+        //            _ordersList = value;
+        //            OnPropertyChanged(nameof(OrdersList));
+        //        }
+        //    }
+        //}
+        //#endregion
 
         #region AbonementTitle
         private List<Abonements> _abonementTitle;
@@ -66,6 +91,24 @@ namespace FitnessCenter.ViewModel
                 {
                     _selectedAbonement = value;
                     OnPropertyChanged(nameof(SelectedProducts));
+                }
+            }
+        }
+        #endregion
+
+        #region SelectedOrders
+        private Abonements _selectedOrders;
+
+        public Abonements SelectedOrders
+        {
+            get => _selectedOrders;
+
+            set
+            {
+                if (value != null && _selectedOrders != value)
+                {
+                    _selectedOrders = value;
+                    OnPropertyChanged(nameof(SelectedOrders));
                 }
             }
         }
@@ -107,6 +150,7 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+
         #region AbonementsPanelVisibility
         private Visibility _abonementsPanelVisibility = Visibility.Visible;
 
@@ -143,6 +187,7 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        //старая техника
         #region AdminPanelGridView
         private GridView _adminPanelGridView;
 
@@ -156,6 +201,42 @@ namespace FitnessCenter.ViewModel
                 {
                     _adminPanelGridView = value;
                     OnPropertyChanged(nameof(AdminPanelGridView));
+                }
+            }
+        }
+        #endregion
+
+        #region AbonementsListVisibility
+        private Visibility _abonementsListVisibility = Visibility.Visible;
+
+        public Visibility AbonementsListVisibility
+        {
+            get => _abonementsListVisibility;
+
+            set
+            {
+                if (_abonementsListVisibility != value)
+                {
+                    _abonementsListVisibility = value;
+                    OnPropertyChanged(nameof(AbonementsListVisibility));
+                }
+            }
+        }
+        #endregion
+
+        #region OrdersListVisibility
+        private Visibility _ordersListVisibility;
+
+        public Visibility OrdersListVisibility
+        {
+            get => _ordersListVisibility;
+
+            set
+            {
+                if (_ordersListVisibility != value)
+                {
+                    _ordersListVisibility = value;
+                    OnPropertyChanged(nameof(OrdersListVisibility));
                 }
             }
         }
@@ -186,7 +267,8 @@ namespace FitnessCenter.ViewModel
             int price = SelectedProducts.Price;
             string photo = SelectedProducts.Photo;
 
-            Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price, photo);
+            //Abonements temp = new Abonements(title, age, validity, visitingTime, amount, price, photo);
+            Abonements temp = new Abonements { Id = new Guid(), Title = title, Age = age, Validity = validity, VisitingTime = visitingTime, Amount = amount, Price = price, Photo = photo };
             
             SelectedProducts = new Abonements();
 
@@ -337,6 +419,7 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+
         #region ShowAbonementsPanel 
         public ICommand ShowAbonementsPanel { get; }
 
@@ -349,11 +432,8 @@ namespace FitnessCenter.ViewModel
             AbonementsPanelVisibility = Visibility.Visible;
             OrdersPanelVisibility = Visibility.Collapsed;
 
-            //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
-
-            AdminPanelGridView = (GridView)GridPanelsDict["AbonementsGridView"];
-
-
+            AbonementsListVisibility = Visibility.Visible;
+            OrdersListVisibility = Visibility.Collapsed;
         }
         #endregion
 
@@ -369,9 +449,8 @@ namespace FitnessCenter.ViewModel
             OrdersPanelVisibility = Visibility.Visible;
             AbonementsPanelVisibility= Visibility.Collapsed;
 
-            //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
-
-            AdminPanelGridView = (GridView)GridPanelsDict["OrdersGridView"];
+            OrdersListVisibility = Visibility.Visible;
+            AbonementsListVisibility = Visibility.Collapsed;
         }
         #endregion
 
@@ -394,8 +473,6 @@ namespace FitnessCenter.ViewModel
 
             ShowOrdersPanel = new RelayCommand(OnShowOrdersPanelCommand, CanShowOrdersPanelCommand);
 
-            //ChangeAdminPanelGridView = new RelayCommand(OnChangeAdminPanelGridViewCommand, CanChangeAdminPanelGridViewCommand);
-
             //сразу загрузил даынне
             context = new UnitOfWork();
 
@@ -407,8 +484,7 @@ namespace FitnessCenter.ViewModel
             //на начальном этапе
             SelectedProducts = new Abonements();
 
-            AdminPanelGridView = (GridView)GridPanelsDict["AbonementsGridView"];
-
+            OrdersList = new ObservableCollection<Orders>(context.OrderRepo.GetAllOrder());
         }
     }
 }

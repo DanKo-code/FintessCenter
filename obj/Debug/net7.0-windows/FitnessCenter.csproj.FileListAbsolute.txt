@@ -86,3 +86,7 @@ D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-w
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.g.cs
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersPanel.baml
 D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Resources\AdminPanelView\AdminPanelView.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AbonementsList.g.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersList.g.cs
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\AbonementsList.baml
+D:\2k2s\OOP_MY\Курсач\моя залупа\FitnessCenter\obj\Debug\net7.0-windows\Views\Windows\Main\UserControls\AdminPanel\OrdersList.baml

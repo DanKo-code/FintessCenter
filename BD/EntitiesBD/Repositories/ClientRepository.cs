@@ -79,7 +79,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         {
             try
             {
-                Clients temp = context.Clients.FirstOrDefault(x => x.ClientsId == client.ClientsId);
+                Clients temp = context.Clients.FirstOrDefault(x => x.Id == client.Id);
 
                 if (!temp.ClientEquals(client))
                 {

@@ -64,8 +64,7 @@ namespace FitnessCenter.Views.Windows.Main.UserControls.Profile {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FitnessCenter;V1.0.0.0;component/views/windows/main/usercontrols/profile/profile" +
-                    ".xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FitnessCenter;component/views/windows/main/usercontrols/profile/profile.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\..\Views\Windows\Main\UserControls\Profile\Profile.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

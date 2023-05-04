@@ -20,7 +20,7 @@ namespace FitnessCenter.BD.EntitiesBD
         private string _photo;
 
 
-        public Guid AbonementsId
+        public Guid Id
         {
             get => _id; 
 
@@ -103,24 +103,26 @@ namespace FitnessCenter.BD.EntitiesBD
             }
         }
 
-        public ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
 
-        public Abonements() 
-        {
-            AbonementsId = Guid.NewGuid();
-            Title = "";
-            Age = 0;
-            Validity = "";
-            VisitingTime = "";
-            Amount = 0;
+        //public Abonements()
+        //{
+        //    AbonementsId = Guid.NewGuid();
+        //    Title = "";
+        //    Age = 0;
+        //    Validity = "";
+        //    VisitingTime = "";
+        //    Amount = 0;
 
-            Price = 0;
-            Photo = "";
-        }
+        //    Price = 0;
+        //    Photo = "";
+        //}
+
+        //public Abonements() { }
 
         public void ResetData(Abonements some)
         {
-            AbonementsId = some.AbonementsId;
+            Id = some.Id;
             Title = some.Title;
             Age = some.Age;
             Validity = some.Validity;
@@ -131,23 +133,23 @@ namespace FitnessCenter.BD.EntitiesBD
             Photo = some.Photo;
         }
 
-        public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
-        {
-            AbonementsId = Guid.NewGuid();
-            Title = title;
-            Age = age;
-            Validity = validity;
-            VisitingTime = visitingTime;
-            Amount = amount;
+        //public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
+        //{
+        //    AbonementsId = Guid.NewGuid();
+        //    Title = title;
+        //    Age = age;
+        //    Validity = validity;
+        //    VisitingTime = visitingTime;
+        //    Amount = amount;
 
-            Price = price;
-            Photo = photo;
-        }
+        //    Price = price;
+        //    Photo = photo;
+        //}
 
         public bool AbonementsEquals(Abonements obj)
         {
             if (
-                AbonementsId == obj.AbonementsId &&
+                Id == obj.Id &&
             Title == obj.Title &&
             Age == obj.Age &&
             Validity == obj.Validity &&

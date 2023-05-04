@@ -24,7 +24,7 @@ namespace FitnessCenter.Migrations
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Abonements", b =>
                 {
-                    b.Property<Guid>("AbonementsId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -53,14 +53,14 @@ namespace FitnessCenter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AbonementsId");
+                    b.HasKey("Id");
 
                     b.ToTable("Abonements");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Clients", b =>
                 {
-                    b.Property<Guid>("ClientsId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -91,7 +91,7 @@ namespace FitnessCenter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ClientsId");
+                    b.HasKey("Id");
 
                     b.ToTable("Clients");
                 });
@@ -102,10 +102,10 @@ namespace FitnessCenter.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AbonementsId")
+                    b.Property<Guid?>("AbonementsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClientsId")
+                    b.Property<Guid?>("ClientsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -121,15 +121,11 @@ namespace FitnessCenter.Migrations
                 {
                     b.HasOne("FitnessCenter.BD.EntitiesBD.Abonements", "Abonement")
                         .WithMany("Orders")
-                        .HasForeignKey("AbonementsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AbonementsId");
 
                     b.HasOne("FitnessCenter.BD.EntitiesBD.Clients", "Client")
                         .WithMany("Orders")
-                        .HasForeignKey("ClientsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientsId");
 
                     b.Navigation("Abonement");
 

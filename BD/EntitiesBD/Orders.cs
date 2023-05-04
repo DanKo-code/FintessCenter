@@ -10,22 +10,25 @@ namespace FitnessCenter.BD.EntitiesBD
     public class Orders
     {
         public Guid Id { get; set; }
-       
-        public Guid AbonementsId { get; set; }
-        public Guid ClientsId { get; set; }
 
-        public Abonements Abonement { get; set; }
-        public Clients Client { get; set; }
+        [ForeignKey("Abonements")]
+        public Guid? AbonementsId { get; set; }
 
-        public Orders() { }
+        [ForeignKey("Clients")]
+        public Guid? ClientsId { get; set; }
 
-        public Orders(Clients client, Abonements abonement)
-        {
-            Id = new Guid();
+        public virtual Abonements Abonement { get; set; }
+        public virtual Clients Client { get; set; }
 
-            ClientsId = client.ClientsId;
-            AbonementsId = abonement.AbonementsId;
+        //public Orders() { }
+
+        //public Orders(Clients client, Abonements abonement)
+        //{
+        //    Id = new Guid();
+
+        //    ClientsId = client.ClientsId;
+        //    AbonementsId = abonement.AbonementsId;
             
-        }
+        //}
     }
 }

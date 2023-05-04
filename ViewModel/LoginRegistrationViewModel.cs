@@ -63,7 +63,8 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region NewClient
-        public Clients _newClient = new Clients("", "", "", "", "", "");
+        //public Clients _newClient = new Clients("", "", "", "", "", "");
+        public Clients _newClient = new Clients { Id = new Guid(), Email = "", Login = "", Name = "", Password = "", Phone ="", Role=0, SurName="" };
 
         public Clients NewClient
         {

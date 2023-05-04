@@ -19,7 +19,7 @@ namespace FitnessCenter.BD.EntitiesBD
         private int _role;
         private string _password;
 
-        public Guid ClientsId
+        public Guid Id
         {
             get => _id;
 
@@ -102,24 +102,24 @@ namespace FitnessCenter.BD.EntitiesBD
             }
         }
 
-        public ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
 
-        public Clients() { }
+        //public Clients() { }
 
-        public Clients(string name, string surname, string login, string email, string phone, string password)
-        {
-            this.Name = name;
-            this.SurName = surname;
-            this.Login = login;
-            this.Email = email;
-            this.Phone = phone;
-            this.Password = password;
-        }
+        //public Clients(string name, string surname, string login, string email, string phone, string password)
+        //{
+        //    this.Name = name;
+        //    this.SurName = surname;
+        //    this.Login = login;
+        //    this.Email = email;
+        //    this.Phone = phone;
+        //    this.Password = password;
+        //}
 
         public bool ClientEquals(Clients obj)
         {
             if (
-                ClientsId == obj.ClientsId &&
+                Id == obj.Id &&
                 Name == obj.Name &&
             SurName == obj.SurName &&
             Login == obj.Login &&
@@ -136,7 +136,7 @@ namespace FitnessCenter.BD.EntitiesBD
 
         public void ResetData(Clients some)
         {
-            ClientsId = some.ClientsId;
+            Id = some.Id;
             Name = some.Name;
             SurName = some.SurName;
             Login = some.Login;

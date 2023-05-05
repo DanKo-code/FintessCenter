@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using FitnessCenter.Views.Windows.Main.UserControls.Abonements;
 
 namespace FitnessCenter.ViewModel
 {
@@ -36,14 +37,9 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region AbonementItems
-        private List<Abonements> _abonementItems = new List<Abonements>
-        {
-            new Abonements(),
-            new Abonements(),
-            
-        };
+        private List<Orders> _abonementItems;
 
-        public List<Abonements> AbonementItems
+        public List<Orders> AbonementItems
         {
             get => _abonementItems;
 
@@ -74,6 +70,19 @@ namespace FitnessCenter.ViewModel
             MessageBox.Show("Все удачно сохранено!");
         }
         #endregion
+
+        #region ReloadOrdersHisory
+        public ICommand ReloadOrdersHisory { get; }
+
+        private bool CanReloadOrdersHisoryCommand(object p)
+        {
+            return true;
+        }
+        private void OnReloadOrdersHisoryCommand(object p)
+        {
+            AbonementItems = context.OrderRepo.GetAllOrder().Where(x => x.ClientsId == CurrentClient.Id).ToList();
+        }
+        #endregion
         #endregion
 
         public ProfileViewModel(Clients client)
@@ -83,6 +92,10 @@ namespace FitnessCenter.ViewModel
             CurrentClient = client;
 
             SaveAllChanges = new RelayCommand(OnSaveAllChangesCommand, CanSaveAllChangesCommand);
+
+            ReloadOrdersHisory = new RelayCommand(OnReloadOrdersHisoryCommand, CanReloadOrdersHisoryCommand);
+
+            AbonementItems = context.OrderRepo.GetAllOrder().Where(x => x.ClientsId == CurrentClient.Id).ToList();
         }
     }
 }

@@ -11,21 +11,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
     {
         private BDContext context;
 
-        public ClientRepository() => context = new BDContext();
-
-        //public bool ()
-        //{
-        //    try
-        //    {
-        //        context.Clients.Add(client);
-        //        context.SaveChanges();
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
+        public ClientRepository(BDContext context) => this.context = context;
 
         public bool AddClient(Clients client)
         {

@@ -21,8 +21,6 @@ namespace FitnessCenter.ViewModel
 {
     internal class AdminPanelViewModel : ObservableObject
     {
-        //ResourceDictionary GridPanelsDict = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source?.OriginalString == "/Resources/AdminPanelView/AdminPanelView.xaml");
-
         //EF
         private UnitOfWork context;
 
@@ -34,31 +32,23 @@ namespace FitnessCenter.ViewModel
         public ObservableCollection<Abonements> SearchedList { get; set; }
 
         //Список заказов
-        public ObservableCollection<Orders> OrdersList { get; set; }
+        private ObservableCollection<Orders> _ordersList;
 
+        public ObservableCollection<Orders> OrdersList
+        {
+            get => _ordersList;
 
-
-        //public ObservableCollection<Orders> OrdersList { get; set; }
+            set
+            {
+                if (_ordersList != value)
+                {
+                    _ordersList = value;
+                    OnPropertyChanged(nameof(OrdersList));
+                }
+            }
+        }
 
         #region Accessors (helpers for ui design)
-
-        //#region OrdersList
-        //private ObservableCollection<Orders> _ordersList;
-
-        //public ObservableCollection<Orders> OrdersList
-        //{
-        //    get => _ordersList;
-
-        //    set
-        //    {
-        //        if (_ordersList != value)
-        //        {
-        //            _ordersList = value;
-        //            OnPropertyChanged(nameof(OrdersList));
-        //        }
-        //    }
-        //}
-        //#endregion
 
         #region AbonementTitle
         private List<Abonements> _abonementTitle;
@@ -73,6 +63,24 @@ namespace FitnessCenter.ViewModel
                 {
                     _abonementTitle = value;
                     OnPropertyChanged(nameof(AbonementTitle));
+                }
+            }
+        }
+        #endregion
+
+        #region BottomAbonementsPanelVisibility
+        private Visibility _bottomAbonementsPanelVisibility;
+
+        public Visibility BottomAbonementsPanelVisibility
+        {
+            get => _bottomAbonementsPanelVisibility;
+
+            set
+            {
+                if (_bottomAbonementsPanelVisibility != value)
+                {
+                    _bottomAbonementsPanelVisibility = value;
+                    OnPropertyChanged(nameof(BottomAbonementsPanelVisibility));
                 }
             }
         }
@@ -97,9 +105,9 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region SelectedOrders
-        private Abonements _selectedOrders;
+        private Orders _selectedOrders;
 
-        public Abonements SelectedOrders
+        public Orders SelectedOrders
         {
             get => _selectedOrders;
 
@@ -150,7 +158,6 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-
         #region AbonementsPanelVisibility
         private Visibility _abonementsPanelVisibility = Visibility.Visible;
 
@@ -187,25 +194,6 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-        //старая техника
-        #region AdminPanelGridView
-        private GridView _adminPanelGridView;
-
-        public GridView AdminPanelGridView
-        {
-            get => _adminPanelGridView;
-
-            set
-            {
-                if (_adminPanelGridView != value)
-                {
-                    _adminPanelGridView = value;
-                    OnPropertyChanged(nameof(AdminPanelGridView));
-                }
-            }
-        }
-        #endregion
-
         #region AbonementsListVisibility
         private Visibility _abonementsListVisibility = Visibility.Visible;
 
@@ -225,7 +213,7 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         #region OrdersListVisibility
-        private Visibility _ordersListVisibility;
+        private Visibility _ordersListVisibility = Visibility.Collapsed;
 
         public Visibility OrdersListVisibility
         {
@@ -247,6 +235,46 @@ namespace FitnessCenter.ViewModel
 
 
         #region Commands
+
+        #region ApproveOrder 
+        public ICommand ApproveOrder { get; }
+
+        private bool CanApproveOrderCommand(object p)
+        {
+            return SelectedOrders != null;
+        }
+
+        private void OnApproveOrderCommand(object p)
+        {
+            context.OrderRepo.FindById(SelectedOrders.Id).Status = 1;
+
+            context.Save();
+
+            OrdersList.Remove(SelectedOrders);
+
+            MessageBox.Show("Отправка на почту");
+        }
+        #endregion
+
+        #region RejectOrder 
+        public ICommand RejectOrder { get; }
+
+        private bool CanRejectOrderCommand(object p)
+        {
+            return SelectedOrders != null;
+        }
+
+        private void OnRejectOrderCommand(object p)
+        {
+            context.OrderRepo.FindById(SelectedOrders.Id).Status = 2;
+
+            context.Save();
+
+            OrdersList.Remove(SelectedOrders);
+
+            MessageBox.Show("Отправка на почту");
+        }
+        #endregion
 
         #region AddAbonement
         public ICommand AddAbonement { get; }
@@ -415,6 +443,9 @@ namespace FitnessCenter.ViewModel
         private void OnSaveAllChangesCommand(object p)
         {
             context.AbonementRepo.SaveAllChanges(AbonementsList.ToList());
+
+            Helpers.CurrentClient.abonements = AbonementsList.ToList();
+
             MessageBox.Show("Все удачно сохранено!");
         }
         #endregion
@@ -434,6 +465,8 @@ namespace FitnessCenter.ViewModel
 
             AbonementsListVisibility = Visibility.Visible;
             OrdersListVisibility = Visibility.Collapsed;
+
+            BottomAbonementsPanelVisibility = Visibility.Visible;
         }
         #endregion
 
@@ -451,6 +484,9 @@ namespace FitnessCenter.ViewModel
 
             OrdersListVisibility = Visibility.Visible;
             AbonementsListVisibility = Visibility.Collapsed;
+            BottomAbonementsPanelVisibility = Visibility.Collapsed;
+
+            OrdersList = new ObservableCollection<Orders>(context.OrderRepo.GetAllOrder());
         }
         #endregion
 
@@ -473,6 +509,8 @@ namespace FitnessCenter.ViewModel
 
             ShowOrdersPanel = new RelayCommand(OnShowOrdersPanelCommand, CanShowOrdersPanelCommand);
 
+            ApproveOrder = new RelayCommand(OnApproveOrderCommand, CanApproveOrderCommand);
+
             //сразу загрузил даынне
             context = new UnitOfWork();
 
@@ -485,6 +523,8 @@ namespace FitnessCenter.ViewModel
             SelectedProducts = new Abonements();
 
             OrdersList = new ObservableCollection<Orders>(context.OrderRepo.GetAllOrder());
+
+            RejectOrder = new RelayCommand(OnRejectOrderCommand, CanRejectOrderCommand);
         }
     }
 }

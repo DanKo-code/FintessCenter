@@ -99,7 +99,7 @@
             <uc:AbonementsPanel DataContext="{Binding Source={StaticResource ViewModell}}" Grid.Row="1" Visibility="{Binding AbonementsPanelVisibility}"/>
             <uc:OrdersPanel DataContext="{Binding Source={StaticResource ViewModell}}" Grid.Row="1" Visibility="{Binding OrdersPanelVisibility}"/>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Visibility="{Binding BottomAbonementsPanelVisibility}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

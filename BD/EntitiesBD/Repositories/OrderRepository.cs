@@ -11,7 +11,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
     {
         private BDContext context;
 
-        public OrderRepository() => context = new BDContext();
+        public OrderRepository(BDContext context) => this.context = context;
 
         public bool AddOrder(Clients client, Abonements abonement)
         {
@@ -20,7 +20,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
                 var res_client = context.Clients.SingleOrDefault(c => c.Id == client.Id);
                 var res_abonement = context.Abonements.SingleOrDefault(a => a.Id == abonement.Id);
 
-                context.Orders.Add(new Orders { Id = new Guid(), Abonement = res_abonement, Client = res_client });
+                context.Orders.Add(new Orders { Id = new Guid(), Status = 0, Abonement = res_abonement, Client = res_client });
                 context.SaveChanges();
                 return true;
             }
@@ -40,6 +40,13 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             {
                 return null;
             }
+        }
+
+        
+
+        public Orders FindById(Guid id) 
+        {
+            return context.Orders.AsTracking().SingleOrDefault(o => o.Id == id);
         }
     }
 }

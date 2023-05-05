@@ -108,6 +108,9 @@ namespace FitnessCenter.Migrations
                     b.Property<Guid?>("ClientsId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AbonementsId");

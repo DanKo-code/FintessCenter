@@ -23,7 +23,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             get
             {
                 if (abonementRepo == null)
-                    abonementRepo = new AbonementRepository();
+                    abonementRepo = new AbonementRepository(context);
                 return abonementRepo;
             }
         }
@@ -33,7 +33,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             get
             {
                 if(clientRepo == null)
-                    clientRepo = new ClientRepository();
+                    clientRepo = new ClientRepository(context);
                 return clientRepo;
             }
         }
@@ -43,7 +43,7 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
             get
             {
                 if (orderRepo == null)
-                    orderRepo = new OrderRepository();
+                    orderRepo = new OrderRepository(context);
                 return orderRepo;
             }
         }

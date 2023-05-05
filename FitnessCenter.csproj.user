@@ -93,6 +93,9 @@
     <Page Update="Views\Windows\Main\UserControls\ForMain.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\Main\UserControls\Profile\OrderItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\Main\UserControls\Profile\Profile.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -13,7 +13,7 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
     {
         private BDContext context;
 
-        public AbonementRepository() => context = new BDContext();
+        public AbonementRepository(BDContext context) => this.context = context;
 
         public List<Abonements> GetAllAbonements()
         {

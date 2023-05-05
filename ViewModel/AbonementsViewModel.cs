@@ -18,7 +18,7 @@ namespace FitnessCenter.ViewModel
         #region Accessors (helpers for ui design)
 
         #region AbonementItems
-        private List<Abonements> _abonementItems;
+        private List<Abonements> _abonementItems = new List<Abonements>();
 
         public List<Abonements> AbonementItems
         {
@@ -26,7 +26,7 @@ namespace FitnessCenter.ViewModel
 
             set
             {
-                if (_abonementItems != value)
+                if (value != _abonementItems)
                 {
                     _abonementItems = value;
                     OnPropertyChanged(nameof(AbonementItems));
@@ -90,6 +90,21 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ReloudAbonementsList
+        public ICommand ReloudAbonementsList { get; }
+
+        private bool CanReloudAbonementsListCommand(object p)
+        {
+            return true;
+        }
+
+        private void OnReloudAbonementsListCommand(object p)
+        {
+            //AbonementItems = Helpers.CurrentClient.abonements;
+            AbonementItems = context.AbonementRepo.GetAllAbonements().ToList();
+        }
+        #endregion
+
         #endregion
 
         public AbonementsViewModel()
@@ -100,7 +115,8 @@ namespace FitnessCenter.ViewModel
 
             AddOrder = new RelayCommand(OnAddOrderCommand, CanAddOrderCommand);
 
-            
+            ReloudAbonementsList = new RelayCommand(OnReloudAbonementsListCommand, CanReloudAbonementsListCommand);
+
             AbonementItems = Helpers.CurrentClient.abonements;
         }
 

@@ -5,10 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FitnessCenter.Views.Windows.Main.UserControls.Abonements"
              
+             
+             
              xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
              
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=vm:AbonementsViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    
+    
     <Grid>
 
         <Grid.DataContext>
@@ -32,6 +37,8 @@
                 <Label Content="Поиск"/>
                 <TextBox Width="100"/>
             </StackPanel>
+
+            <Button Command="{Binding ReloudAbonementsList}" Content="R" Width="40" Height="40" Margin="100 0 0 0"/>
 
         </StackPanel>
 

@@ -55,7 +55,7 @@ namespace FitnessCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Abonements");
+                    b.ToTable("Abonements", (string)null);
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Clients", b =>
@@ -93,7 +93,7 @@ namespace FitnessCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Orders", b =>
@@ -117,7 +117,27 @@ namespace FitnessCenter.Migrations
 
                     b.HasIndex("ClientsId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
+                });
+
+            modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Repositories.Services", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AbonentsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbonentsId");
+
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Orders", b =>
@@ -135,9 +155,22 @@ namespace FitnessCenter.Migrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Repositories.Services", b =>
+                {
+                    b.HasOne("FitnessCenter.BD.EntitiesBD.Abonements", "Abonents")
+                        .WithMany("Services")
+                        .HasForeignKey("AbonentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Abonents");
+                });
+
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Abonements", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Clients", b =>

@@ -1,4 +1,5 @@
-﻿using FitnessCenter.Core;
+﻿using FitnessCenter.BD.EntitiesBD.Repositories;
+using FitnessCenter.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,6 +19,7 @@ namespace FitnessCenter.BD.EntitiesBD
         private int _amount;
         private int _price;
         private string _photo;
+        
 
         public override string ToString()
         {
@@ -113,6 +115,7 @@ namespace FitnessCenter.BD.EntitiesBD
         }
 
         public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Services> Services { get; set; }
 
         //public Abonements()
         //{

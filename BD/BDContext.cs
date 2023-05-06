@@ -1,4 +1,5 @@
 ﻿using FitnessCenter.BD.EntitiesBD;
+using FitnessCenter.BD.EntitiesBD.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace FitnessCenter.BD
         public DbSet<Abonements> Abonements { get; set; }
         public DbSet<Clients> Clients { get; set; }
         public DbSet<Orders> Orders { get; set; }
+        public DbSet<Services> Services { get; set; }
+
 
         //public BDContext() => Database.EnsureCreated();
 

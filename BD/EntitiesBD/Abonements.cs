@@ -19,6 +19,15 @@ namespace FitnessCenter.BD.EntitiesBD
         private int _price;
         private string _photo;
 
+        public override string ToString()
+        {
+            return $"<b>Название:</b> {_title}<br>" +
+                    $"<b>Возраст:</b> {_age}<br>" +
+                    $"<b>Срок действия:</b> {_validity}<br>" +
+                    $"<b>Время посещения:</b> {_visitingTime}<br>" +
+                    $"<b>Доступное количество:</b> {_amount}<br>" +
+                    $"<b>Стоимость:</b> {_price}<br>";
+        }
 
         public Guid Id
         {

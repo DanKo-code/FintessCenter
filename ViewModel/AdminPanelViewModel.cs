@@ -252,6 +252,13 @@ namespace FitnessCenter.ViewModel
 
             OrdersList.Remove(SelectedOrders);
 
+            //********************************Отправка на почту**************************************************************
+
+            MessageBox.Show("Начало отправки!");
+            var mail = Helpers.SMTP.CreateMail("FitnessCenter", Helpers.CurrentClient.adminEmail, Helpers.CurrentClient.client.Email, $"Заказ!", $"<b>Ваш заказ</b><br><br>{SelectedOrders.Abonement.ToString()} <br><b>Статуc:</b> одобрен! :)");
+
+            Helpers.SMTP.SendMail("smtp.gmail.com", 587, Helpers.CurrentClient.adminEmail, Helpers.CurrentClient.adminPass, mail);
+
             MessageBox.Show("Отправка на почту");
         }
         #endregion
@@ -271,6 +278,13 @@ namespace FitnessCenter.ViewModel
             context.Save();
 
             OrdersList.Remove(SelectedOrders);
+
+            //********************************Отправка на почту**************************************************************
+
+            MessageBox.Show("Начало отправки!");
+            var mail = Helpers.SMTP.CreateMail("FitnessCenter", Helpers.CurrentClient.adminEmail, Helpers.CurrentClient.client.Email, $"Заказ!", $"<b>Ваш заказ</b><br><br>{SelectedOrders.Abonement.ToString()} <br><b>Статуc:</b> отклонен! :)");
+
+            Helpers.SMTP.SendMail("smtp.gmail.com", 587, Helpers.CurrentClient.adminEmail, Helpers.CurrentClient.adminPass, mail);
 
             MessageBox.Show("Отправка на почту");
         }

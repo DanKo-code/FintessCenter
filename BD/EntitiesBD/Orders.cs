@@ -33,15 +33,9 @@ namespace FitnessCenter.BD.EntitiesBD
         public virtual Abonements Abonement { get; set; }
         public virtual Clients Client { get; set; }
 
-        //public Orders() { }
-
-        //public Orders(Clients client, Abonements abonement)
-        //{
-        //    Id = new Guid();
-
-        //    ClientsId = client.ClientsId;
-        //    AbonementsId = abonement.AbonementsId;
-            
-        //}
+        public override string ToString()
+        {
+            return "";
+        }
     }
 }

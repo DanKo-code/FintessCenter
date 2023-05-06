@@ -12,5 +12,9 @@ namespace FitnessCenter.Helpers
         public static Clients client;
 
         public static List<Abonements> abonements;
+
+        public const String adminEmail = "ilyinnik3@gmail.com";
+
+        public const String adminPass = "aojiuhowjilqvtnb";
     }
 }

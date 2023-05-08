@@ -19,7 +19,7 @@ namespace FitnessCenter.BD.Repositories.EntitiesBD
         {
             try
             {
-                return context.Abonements.ToList();
+                return context.Abonements.Include(o => o.Services).ToList();
             }
             catch
             {

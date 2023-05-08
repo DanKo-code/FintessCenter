@@ -24,13 +24,13 @@ namespace FitnessCenter.Migrations
 
             modelBuilder.Entity("AbonementsServices", b =>
                 {
-                    b.Property<Guid>("AbonementId")
+                    b.Property<Guid>("AbonementsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ServicesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("AbonementId", "ServicesId");
+                    b.HasKey("AbonementsId", "ServicesId");
 
                     b.HasIndex("ServicesId");
 
@@ -141,9 +141,6 @@ namespace FitnessCenter.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AbonementId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -157,7 +154,7 @@ namespace FitnessCenter.Migrations
                 {
                     b.HasOne("FitnessCenter.BD.EntitiesBD.Abonements", null)
                         .WithMany()
-                        .HasForeignKey("AbonementId")
+                        .HasForeignKey("AbonementsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

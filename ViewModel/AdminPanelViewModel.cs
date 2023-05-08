@@ -623,7 +623,7 @@ namespace FitnessCenter.ViewModel
         #endregion
 
         ///////////////////////////////////////////////////////////////////////////
-        #region CanSelectedServicesCommand 
+        #region SelectedServices 
 
         public ICommand SelectedServices { get; }
 
@@ -635,12 +635,30 @@ namespace FitnessCenter.ViewModel
         {
             ObservableCollection<Services> temp = new ObservableCollection<Services>();
 
+            if(context.AbonementRepo.GetAllAbonements().Find(x => x.Id == SelectedProducts.Id).Services != null)
+            {
+                context.AbonementRepo.GetAllAbonements().Find(x => x.Id == SelectedProducts.Id).Services.Clear();
+                context.Save();
+            }
+            else
+            {
+                context.AbonementRepo.GetAllAbonements().Find(x => x.Id == SelectedProducts.Id).Services = new List<Services>();
+            }
+            
+
+
+
             foreach (Services item in (IList)p)
             {
                 temp.Add(item);
+                context.AbonementRepo.GetAllAbonements().Find(x => x.Id == SelectedProducts.Id).Services.Add(item);
+                context.Save();
             }
 
             SelectedProducts.Services = temp;
+         
+            //context.AbonementRepo.GetAllAbonements().Find(x=>x.Id == SelectedProducts.Id).Services.Clear();
+            //context.AbonementRepo.GetAllAbonements().Find(x=>x.Id == SelectedProducts.Id).Services.;
         }
         #endregion
 

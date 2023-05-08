@@ -22,6 +22,21 @@ namespace FitnessCenter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AbonementsServices", b =>
+                {
+                    b.Property<Guid>("AbonementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ServicesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AbonementId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("AbonementsServices");
+                });
+
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Abonements", b =>
                 {
                     b.Property<Guid>("Id")
@@ -55,7 +70,7 @@ namespace FitnessCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Abonements", (string)null);
+                    b.ToTable("Abonements");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Clients", b =>
@@ -93,7 +108,7 @@ namespace FitnessCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Orders", b =>
@@ -117,7 +132,7 @@ namespace FitnessCenter.Migrations
 
                     b.HasIndex("ClientsId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Repositories.Services", b =>
@@ -126,7 +141,7 @@ namespace FitnessCenter.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AbonentsId")
+                    b.Property<Guid>("AbonementId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -135,9 +150,22 @@ namespace FitnessCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AbonentsId");
+                    b.ToTable("Services");
+                });
 
-                    b.ToTable("Services", (string)null);
+            modelBuilder.Entity("AbonementsServices", b =>
+                {
+                    b.HasOne("FitnessCenter.BD.EntitiesBD.Abonements", null)
+                        .WithMany()
+                        .HasForeignKey("AbonementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitnessCenter.BD.EntitiesBD.Repositories.Services", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Orders", b =>
@@ -155,22 +183,9 @@ namespace FitnessCenter.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Repositories.Services", b =>
-                {
-                    b.HasOne("FitnessCenter.BD.EntitiesBD.Abonements", "Abonents")
-                        .WithMany("Services")
-                        .HasForeignKey("AbonentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Abonents");
-                });
-
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Abonements", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("FitnessCenter.BD.EntitiesBD.Clients", b =>

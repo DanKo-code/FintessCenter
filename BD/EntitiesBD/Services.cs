@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,6 +13,9 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         public Guid Id { get; set; }
         public string Title { get; set; }
 
-        public Abonements Abonements { get; set; }
+        [ForeignKey("Abonements")]
+        public Guid AbonementId { get; set; }
+
+        public virtual ICollection<Abonements> Abonement { get; set; }
     }
 }

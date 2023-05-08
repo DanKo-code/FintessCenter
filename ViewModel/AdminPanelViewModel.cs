@@ -4,6 +4,7 @@ using FitnessCenter.Core;
 using FitnessCenter.Views.Windows.Main.UserControls.AdminPanel;
 using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -49,6 +50,60 @@ namespace FitnessCenter.ViewModel
         }
 
         #region Accessors (helpers for ui design)
+
+        #region NewServiceName
+        private string _newServiceName;
+
+        public string NewServiceName
+        {
+            get => _newServiceName;
+
+            set
+            {
+                if (_newServiceName != value)
+                {
+                    _newServiceName = value;
+                    OnPropertyChanged(nameof(NewServiceName));
+                }
+            }
+        }
+        #endregion
+
+        #region SelectedServices
+        private IEnumerable _selectedServices;
+
+        public IEnumerable SelectedServices
+        {
+            get => _selectedServices;
+
+            set
+            {
+                if (_selectedServices != value)
+                {
+                    _selectedServices = value;
+                    OnPropertyChanged(nameof(SelectedServices));
+                }
+            }
+        }
+        #endregion
+
+        #region ServicesList
+        private List<string> _servicesList = new List<string> { "Бассейн", "Сауна", "Тренажерный зал" };
+
+        public List<string> ServicesList
+        {
+            get => _servicesList;
+
+            set
+            {
+                if (_servicesList != value)
+                {
+                    _servicesList = value;
+                    OnPropertyChanged(nameof(ServicesList));
+                }
+            }
+        }
+        #endregion
 
         #region AbonementTitle
         private List<Abonements> _abonementTitle;
@@ -235,6 +290,21 @@ namespace FitnessCenter.ViewModel
 
 
         #region Commands
+
+        #region AddService 
+        public ICommand AddService { get; }
+
+        private bool CanAddServiceCommand(object p)
+        {
+            return true;
+        }
+
+        private void OnAddServiceCommand(object p)
+        {
+            ServicesList.Add(NewServiceName);
+            //OnPropertyChanged("SelectedServices");
+        }
+        #endregion
 
         #region ApproveOrder 
         public ICommand ApproveOrder { get; }
@@ -508,6 +578,8 @@ namespace FitnessCenter.ViewModel
 
         public AdminPanelViewModel()
         {
+            AddService = new RelayCommand(OnAddServiceCommand, CanAddServiceCommand);
+
             AddAbonement = new RelayCommand(OnAddAbonementCommand, CanAddAbonementCommand);
             Deselect = new RelayCommand(OnDeselectCommand, CanDeselectCommand);
             RemoveAbonement = new RelayCommand(OnRemoveAbonementCommand, CanRemoveAbonementCommand);

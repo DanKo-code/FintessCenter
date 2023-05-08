@@ -19,7 +19,6 @@ namespace FitnessCenter.BD.EntitiesBD
         private int _amount;
         private int _price;
         private string _photo;
-        
 
         public override string ToString()
         {
@@ -31,6 +30,7 @@ namespace FitnessCenter.BD.EntitiesBD
                     $"<b>Стоимость:</b> {_price}<br>";
         }
 
+        
         public Guid Id
         {
             get => _id; 

@@ -69,28 +69,11 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
-        #region SelectedServices
-        private IEnumerable _selectedServices;
-
-        public IEnumerable SelectedServices
-        {
-            get => _selectedServices;
-
-            set
-            {
-                if (_selectedServices != value)
-                {
-                    _selectedServices = value;
-                    OnPropertyChanged(nameof(SelectedServices));
-                }
-            }
-        }
-        #endregion
-
         #region ServicesList
-        private List<string> _servicesList = new List<string> { "Бассейн", "Сауна", "Тренажерный зал" };
 
-        public List<string> ServicesList
+
+        public ObservableCollection<Services> _servicesList;
+        public ObservableCollection<Services> ServicesList
         {
             get => _servicesList;
 
@@ -99,10 +82,30 @@ namespace FitnessCenter.ViewModel
                 if (_servicesList != value)
                 {
                     _servicesList = value;
+
                     OnPropertyChanged(nameof(ServicesList));
                 }
             }
         }
+
+
+        //private ObservableCollection<Services> _selectedServices;
+        //public ObservableCollection<Services> SelectedServices
+        //{
+        //    get => _selectedServices;
+
+        //    set
+        //    {
+        //        if (_selectedServices != value)
+        //        {
+        //            _selectedServices = value;
+
+        //            SelectedProducts.Services = value;
+
+        //            OnPropertyChanged(nameof(SelectedServices));
+        //        }
+        //    }
+        //}
         #endregion
 
         #region AbonementTitle
@@ -285,11 +288,53 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        #region ServicesListVisibility
+        private Visibility _servicesListVisibility = Visibility.Collapsed;
+
+        public Visibility ServicesListVisibility
+        {
+            get => _servicesListVisibility;
+
+            set
+            {
+                if (_servicesListVisibility != value)
+                {
+                    _servicesListVisibility = value;
+                    OnPropertyChanged(nameof(ServicesListVisibility));
+                }
+            }
+        }
+        #endregion
+
         #endregion
 
 
 
         #region Commands
+
+        #region ChangeServicesListVisibility 
+        public ICommand ChangeServicesListVisibility { get; }
+
+        private bool CanChangeServicesListVisibilityCommand(object p)
+        {
+            return true;
+        }
+
+        private void OnChangeServicesListVisibilityCommand(object p)
+        {
+            if(ServicesListVisibility == Visibility.Visible)
+            {
+                ServicesListVisibility = Visibility.Collapsed;
+                return;
+            }
+
+            if (ServicesListVisibility == Visibility.Collapsed)
+            {
+                ServicesListVisibility = Visibility.Visible;
+                return;
+            }
+        }
+        #endregion
 
         #region AddService 
         public ICommand AddService { get; }
@@ -301,8 +346,11 @@ namespace FitnessCenter.ViewModel
 
         private void OnAddServiceCommand(object p)
         {
-            ServicesList.Add(NewServiceName);
-            //OnPropertyChanged("SelectedServices");
+            Services temp = new Services() { Id = new Guid(), Title = NewServiceName };
+
+            context.ServiceRepo.AddService(temp);
+
+            ServicesList.Add(temp);
         }
         #endregion
 
@@ -574,10 +622,38 @@ namespace FitnessCenter.ViewModel
         }
         #endregion
 
+        ///////////////////////////////////////////////////////////////////////////
+        #region CanSelectedServicesCommand 
+
+        public ICommand SelectedServices { get; }
+
+        private bool CanSelectedServicesCommand(object p)
+        {
+            return true;
+        }
+        private void OnSelectedServicesCommand(object p)
+        {
+            ObservableCollection<Services> temp = new ObservableCollection<Services>();
+
+            foreach (Services item in (IList)p)
+            {
+                temp.Add(item);
+            }
+
+            SelectedProducts.Services = temp;
+        }
         #endregion
 
-        public AdminPanelViewModel()
+        #endregion
+
+        public AdminPanelViewModel() 
         {
+            SelectedServices = new RelayCommand(OnSelectedServicesCommand, CanSelectedServicesCommand);///////////////////////////////////////////////////////////////////////////
+
+            ChangeServicesListVisibility = new RelayCommand(OnChangeServicesListVisibilityCommand, CanChangeServicesListVisibilityCommand);
+
+            ServicesList = new ObservableCollection<Services>();
+
             AddService = new RelayCommand(OnAddServiceCommand, CanAddServiceCommand);
 
             AddAbonement = new RelayCommand(OnAddAbonementCommand, CanAddAbonementCommand);
@@ -604,6 +680,8 @@ namespace FitnessCenter.ViewModel
             AbonementsList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
             SearchedList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
+
+            ServicesList = new ObservableCollection<Services>(context.ServiceRepo.GetAllServices());
 
             //на начальном этапе
             SelectedProducts = new Abonements();

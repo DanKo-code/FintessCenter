@@ -16,6 +16,11 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         [ForeignKey("Abonements")]
         public Guid AbonementId { get; set; }
 
-        public virtual ICollection<Abonements> Abonement { get; set; }
+        public virtual ICollection<Abonements> Abonements { get; set; }
+
+        public override string ToString()
+        {
+            return $" {Title} ";
+        }
     }
 }

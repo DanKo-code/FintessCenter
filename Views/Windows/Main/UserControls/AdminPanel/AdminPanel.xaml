@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FitnessCenter.ViewModel"
              
+             xmlns:con="clr-namespace:FitnessCenter.Converters"
+             
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              
              xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
@@ -16,11 +18,12 @@
 
     <UserControl.Resources>
         <local:AdminPanelViewModel x:Key="ViewModell"/>
+        <con:ServicesListToStringConverter x:Key="ServicesListToStringConverter"/>
     </UserControl.Resources>
 
     <Grid x:Name="AdminContext" DataContext="{Binding Source={StaticResource ViewModell}}">
 
-        
+
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -39,7 +42,7 @@
                 <Button Command="{Binding ShowAbonementsPanel}" Content="Абонементы" Margin="10" Width="100" Height="30"/>
                 <Button Command="{Binding ShowOrdersPanel}" Content="Заказы" Margin="10" Width="100" Height="30"/>
                 <Button Content="Пользователи" Margin="10" Width="100" Height="30"/>
-                
+
             </StackPanel>
 
             <!--<Grid Grid.Row="1" DataContext="{Binding SelectedProducts}">
@@ -105,7 +108,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel VerticalAlignment="Center"  Grid.Column="0">
+                <StackPanel VerticalAlignment="Center"  Grid.Column="0" >
                     <Button Command="{Binding Deselect}" Content="Снять выбор" Margin="10"/>
                     <Button Command="{Binding AddAbonement}" Content="Добавить" Margin="10"/>
                     <TextBox Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"  Margin="10">
@@ -117,7 +120,7 @@
                     </TextBox>
                 </StackPanel>
 
-                <StackPanel VerticalAlignment="Center"  Grid.Column="1">
+                <StackPanel VerticalAlignment="Center"  Grid.Column="2">
                     <Button Command="{Binding RemoveAbonement}" Content="Удалить" Margin="10"/>
                     <ComboBox Text="Фильтр" Margin="10">
                         <ComboBoxItem Content="Название">
@@ -132,7 +135,7 @@
                         <ComboBoxItem Content="Время посещений"/>
                         <ComboBoxItem Content="Доступное кол-во"/>
                     </ComboBox>
-                    <Button Command="{Binding SaveAllChanges}" Content="Сохранить все изменения"/>
+                    <Button Command="{Binding SaveAllChanges}" Content="Сохранить все изменения" Margin="10"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -141,190 +144,198 @@
 
         <ListView SelectedItem="{Binding SelectedProducts}" ItemsSource="{Binding SearchedList}" Background="Green"  Grid.Column="2" Visibility="{Binding AbonementsListVisibility}">
             <ListView.View>
-            <GridView>
-                <GridViewColumn Header="Название">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Title}" 
+                <GridView>
+                    <GridViewColumn Header="Название">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Срок действия">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Validity}" 
+                    <GridViewColumn Header="Срок действия">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Validity}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Время посещения:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding VisitingTime}" 
+                    <GridViewColumn Header="Время посещения:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VisitingTime}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Доступное кол-во:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Amount}" 
+                    <GridViewColumn Header="Доступное кол-во:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Amount}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Включено:">
-
-                </GridViewColumn>
-
-                <GridViewColumn Header="Стоимость:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Price}" 
+                    <GridViewColumn Header="Услуги:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Services, Converter={StaticResource ServicesListToStringConverter}, UpdateSourceTrigger=PropertyChanged}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Фото:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Photo}" 
+                    <GridViewColumn Header="Стоимость:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Price}" 
+                                           TextWrapping="Wrap" 
+                                           FontSize="16"
+                                           Foreground="#99aab5" 
+                                           Margin="10,0,0,0"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Фото:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Photo}" 
                                            Width="50"
                                            Height="50"
                                            Margin="10,0,0,0"></Image>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-            </GridView>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
             </ListView.View>
         </ListView>
 
         <ListView SelectedItem="{Binding SelectedOrders}" ItemsSource="{Binding OrdersList}" Background="Green"  Grid.Column="2" Visibility="{Binding OrdersListVisibility}">
             <ListView.View>
-            <GridView>
-                <GridViewColumn Header="Имя клиента">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                <GridView>
+                    <GridViewColumn Header="Имя клиента">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Client.Name}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Фамилия клиента">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Фамилия клиента">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Client.SurName}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Название">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Название">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Abonement.Title}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Срок действия">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Срок действия">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Abonement.Validity}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Время посещения:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Время посещения:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Abonement.VisitingTime}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Доступное кол-во:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Доступное кол-во:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Abonement.Amount}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Включено:">
+                    <GridViewColumn Header="Включено:">
 
-                </GridViewColumn>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Стоимость:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Стоимость:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <TextBlock Text="{Binding Abonement.Price}" 
                                            TextWrapping="Wrap" 
                                            FontSize="16"
                                            Foreground="#99aab5" 
                                            Margin="10,0,0,0"></TextBlock>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                <GridViewColumn Header="Фото:">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
+                    <GridViewColumn Header="Фото:">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
                                 <Image Source="{Binding Abonement.Photo}" 
                                            Width="50"
                                            Height="50"
                                            Margin="10,0,0,0"></Image>
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-            </GridView>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
             </ListView.View>
         </ListView>
     </Grid>
-        
-        
+
+
 </UserControl>

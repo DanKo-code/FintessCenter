@@ -16,7 +16,17 @@ namespace FitnessCenter.BD.EntitiesBD.Repositories
         private AbonementRepository abonementRepo;
         private ClientRepository clientRepo;
         private OrderRepository orderRepo;
+        private ServiceRepository serviceRepo;
 
+        public ServiceRepository ServiceRepo
+        {
+            get
+            {
+                if (serviceRepo == null)
+                    serviceRepo = new ServiceRepository(context);
+                return serviceRepo;
+            }
+        }
 
         public AbonementRepository AbonementRepo
         {

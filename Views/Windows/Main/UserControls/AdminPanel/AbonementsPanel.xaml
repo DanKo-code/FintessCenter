@@ -7,6 +7,12 @@
              
              xmlns:vm="clr-namespace:FitnessCenter.ViewModel"
              
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:ii="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cmd="http://schemas.microsoft.com/winfx/2006/xaml/presentation/command"
+             
+             xmlns:help="clr-namespace:FitnessCenter.Helpers"
+             
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=vm:AdminPanelViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -41,18 +47,69 @@
                 <TextBox Text="{Binding SelectedProducts.Amount, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
-            <StackPanel Margin="5">
+            <!--<StackPanel Margin="5">
                 <Label Content="Включено:"/>
-                <!--<MultiComboBox>
+                --><!--<MultiComboBox>
                     <ComboBoxItem Content="Бассейн"/>
                     <ComboBoxItem Content="Тренажерный зал"/>
                     <ComboBoxItem Content="Сауна"/>
-                </MultiComboBox>-->
+                </MultiComboBox>--><!--
+            </StackPanel>-->
+
+            <!--#region Секция для добавления сервиса-->
+            <StackPanel Margin="5">
+                <Label Content="Услуги:"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseRightButtonDown">
+                                <i:InvokeCommandAction Command="{Binding ChangeServicesListVisibility}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox  Text="{Binding NewServiceName}" Grid.Column="0" Background="Aqua" Grid.Row="0">
+                            <TextBox.ContextMenu>
+                                <ContextMenu Visibility="Collapsed"/>
+                            </TextBox.ContextMenu>
+                        </TextBox>
+
+                        <Button Command="{Binding AddService}" Content="Добавить" Grid.Column="1"/>
+                    </Grid>
+
+                    <ListBox MaxHeight="100" Visibility="{Binding ServicesListVisibility}" ItemsSource="{Binding ServicesList}" Grid.Row="1" SelectionMode="Multiple">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectedServices}" 
+                                   CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=ListBox}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </ListBox>
+
+                </Grid>
             </StackPanel>
-
-            <local:CustomMultiComboBox NewItemName="{Binding Path=NewServiceName, Mode=TwoWay}" Command="{Binding Path=AddService, Mode=TwoWay}" ItemsSource="{Binding Path=ServicesList, Mode=TwoWay}"/>
-
-
+            
+            
+            
+            <!--#endregion-->
 
             <StackPanel Margin="5">
                 <Label Content="Стоимость:"/>

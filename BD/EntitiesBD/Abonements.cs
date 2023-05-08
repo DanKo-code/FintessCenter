@@ -114,23 +114,19 @@ namespace FitnessCenter.BD.EntitiesBD
             }
         }
 
+
+        private ICollection<Services> _services;
         public virtual ICollection<Orders> Orders { get; set; }
-        public virtual ICollection<Services> Services { get; set; }
+        public virtual ICollection<Services> Services 
+        {
+            get => _services;
 
-        //public Abonements()
-        //{
-        //    AbonementsId = Guid.NewGuid();
-        //    Title = "";
-        //    Age = 0;
-        //    Validity = "";
-        //    VisitingTime = "";
-        //    Amount = 0;
-
-        //    Price = 0;
-        //    Photo = "";
-        //}
-
-        //public Abonements() { }
+            set
+            {
+                _services = value;
+                OnPropertyChanged("Services");
+            }
+        }
 
         public void ResetData(Abonements some)
         {
@@ -144,19 +140,6 @@ namespace FitnessCenter.BD.EntitiesBD
             Price = some.Price;
             Photo = some.Photo;
         }
-
-        //public Abonements(string title, int age, string validity, string visitingTime, int amount, int price, string photo)
-        //{
-        //    AbonementsId = Guid.NewGuid();
-        //    Title = title;
-        //    Age = age;
-        //    Validity = validity;
-        //    VisitingTime = visitingTime;
-        //    Amount = amount;
-
-        //    Price = price;
-        //    Photo = photo;
-        //}
 
         public bool AbonementsEquals(Abonements obj)
         {

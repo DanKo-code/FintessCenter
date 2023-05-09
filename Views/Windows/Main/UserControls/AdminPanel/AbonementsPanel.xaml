@@ -88,7 +88,7 @@
                         <Button Command="{Binding AddService}" Content="Добавить" Grid.Column="1"/>
                     </Grid>
 
-                    <ListBox MaxHeight="100" Visibility="{Binding ServicesListVisibility}" ItemsSource="{Binding ServicesList}" Grid.Row="1" SelectionMode="Multiple">
+                    <!--<ListBox x:Name="myListBox" MaxHeight="100" Visibility="{Binding ServicesListVisibility}" ItemsSource="{Binding ServicesList}" Grid.Row="1" SelectionMode="Multiple">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Title}"/>
@@ -98,11 +98,22 @@
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding SelectedServices}" 
-                                   CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=ListBox}}" />
+                                   CommandParameter="{Binding ElementName=myListBox, Path=SelectedItems}" />
+                                   --><!--CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=ListBox}}" />--><!--
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
 
-                    </ListBox>
+                    </ListBox>-->
+
+                    <help:MyListBox SelectedItems="{Binding SelectedProducts.Services, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxHeight="100" Visibility="{Binding ServicesListVisibility}" ItemsSource="{Binding ServicesList}" Grid.Row="1" SelectionMode="Multiple">
+                        <help:MyListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}"/>
+                            </DataTemplate>
+                        </help:MyListBox.ItemTemplate>
+                        
+                        
+                    </help:MyListBox>
 
                 </Grid>
             </StackPanel>

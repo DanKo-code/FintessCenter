@@ -115,8 +115,11 @@ namespace FitnessCenter.BD.EntitiesBD
         }
 
 
-        private ICollection<Services> _services;
+        private ICollection<Services> _services = new List<Services>();
         public virtual ICollection<Orders> Orders { get; set; }
+
+
+
         public virtual ICollection<Services> Services 
         {
             get => _services;

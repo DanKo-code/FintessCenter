@@ -157,6 +157,7 @@ namespace FitnessCenter.ViewModel
                 {
                     _selectedAbonement = value;
                     OnPropertyChanged(nameof(SelectedProducts));
+                    //SelectedProducts.Services = SelectedProducts.Services;
                 }
             }
         }
@@ -302,6 +303,32 @@ namespace FitnessCenter.ViewModel
                     _servicesListVisibility = value;
                     OnPropertyChanged(nameof(ServicesListVisibility));
                 }
+            }
+        }
+        #endregion
+
+        #region SelectedItems
+        private IEnumerable<object> _selectedItems;
+        public IEnumerable<object> SelectedItems
+        {
+            get { return _selectedItems; }
+            set
+            {
+                _selectedItems = value;
+                OnPropertyChanged("SelectedItems");
+            }
+        }
+        #endregion
+
+        #region SelectedServicess
+        private IList<Services> _selectedServicess;
+        public IList<Services> SelectedServicess
+        {
+            get { return _selectedServicess; }
+            set
+            {
+                _selectedServicess = value;
+                OnPropertyChanged("SelectedServicess");
             }
         }
         #endregion
@@ -697,7 +724,19 @@ namespace FitnessCenter.ViewModel
             //заполнил смотрящего
             AbonementsList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
 
+            //foreach (Abonements abonement in AbonementsList)
+            //{
+            //    if(abonement.Services == null)
+            //        abonement.Services = new List<Services>();
+            //}
+
             SearchedList = new ObservableCollection<Abonements>(context.AbonementRepo.GetAllAbonements());
+
+            //foreach (Abonements abonement in SearchedList)
+            //{
+            //    if (abonement.Services == null)
+            //        abonement.Services = new List<Services>();
+            //}
 
             ServicesList = new ObservableCollection<Services>(context.ServiceRepo.GetAllServices());
 

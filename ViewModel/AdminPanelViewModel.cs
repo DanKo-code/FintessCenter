@@ -20,7 +20,7 @@ using System.Windows.Media.Imaging;
 
 namespace FitnessCenter.ViewModel
 {
-    internal class AdminPanelViewModel : ObservableObject
+    public class AdminPanelViewModel : ObservableObject
     {
         //EF
         private UnitOfWork context;
@@ -147,6 +147,8 @@ namespace FitnessCenter.ViewModel
         #region SelectedProducts
         private Abonements _selectedAbonement;
 
+        public static event EventHandler MyEvent;
+
         public Abonements SelectedProducts
         {
             get => _selectedAbonement;
@@ -157,6 +159,13 @@ namespace FitnessCenter.ViewModel
                 {
                     _selectedAbonement = value;
                     OnPropertyChanged(nameof(SelectedProducts));
+
+                    if(MyEvent != null)
+                    {
+                        MyEvent(this, EventArgs.Empty);
+                    }
+
+                    
                     //SelectedProducts.Services = SelectedProducts.Services;
                 }
             }

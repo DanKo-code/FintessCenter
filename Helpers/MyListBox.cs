@@ -9,6 +9,7 @@ using System.Windows;
 using FitnessCenter.BD.EntitiesBD.Repositories;
 using FitnessCenter.BD.EntitiesBD;
 using System.ComponentModel;
+using FitnessCenter.ViewModel;
 
 namespace FitnessCenter.Helpers
 {
@@ -18,7 +19,7 @@ namespace FitnessCenter.Helpers
             DependencyProperty.Register("SelectedItems", typeof(ICollection<Services>), typeof(MyListBox),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        
+        //public AdminPanelViewModel OtherClassInstance = new AdminPanelViewModel();
 
         public ICollection<Services> SelectedItems
         {
@@ -63,17 +64,22 @@ namespace FitnessCenter.Helpers
 
         public MyListBox()
         {
-            this.IsVisibleChanged += MyListBox_VisibilityChanged;
+            AdminPanelViewModel.MyEvent += OtherClass_MyEvent;
         }
 
-        private void MyListBox_VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void OtherClass_MyEvent(object sender, EventArgs e)
         {
-            if(this.Visibility == Visibility.Visible)
-            {
-                this.SetSelectedItems(SelectedItems);
-            }
+            this.SetSelectedItems(SelectedItems);
         }
 
-        
+        //private void MyListBox_VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if(this.Visibility == Visibility.Visible)
+        //    {
+        //        this.SetSelectedItems(SelectedItems);
+        //    }
+        //}
+
+
     }
 }

@@ -88,24 +88,6 @@ namespace FitnessCenter.ViewModel
             }
         }
 
-
-        //private ObservableCollection<Services> _selectedServices;
-        //public ObservableCollection<Services> SelectedServices
-        //{
-        //    get => _selectedServices;
-
-        //    set
-        //    {
-        //        if (_selectedServices != value)
-        //        {
-        //            _selectedServices = value;
-
-        //            SelectedProducts.Services = value;
-
-        //            OnPropertyChanged(nameof(SelectedServices));
-        //        }
-        //    }
-        //}
         #endregion
 
         #region AbonementTitle
@@ -163,10 +145,7 @@ namespace FitnessCenter.ViewModel
                     if(MyEvent != null)
                     {
                         MyEvent(this, EventArgs.Empty);
-                    }
-
-                    
-                    //SelectedProducts.Services = SelectedProducts.Services;
+                    }                    
                 }
             }
         }
@@ -387,6 +366,30 @@ namespace FitnessCenter.ViewModel
             context.ServiceRepo.AddService(temp);
 
             ServicesList.Add(temp);
+        }
+        #endregion
+
+        #region RemoveService 
+        public ICommand RemoveService { get; }
+
+        private bool CanRemoveServiceCommand(object p)
+        {
+            return true;
+        }
+
+        private void OnRemoveServiceCommand(object p)
+        {
+            Services temp = ServicesList.FirstOrDefault(x => x.Title == NewServiceName);
+
+            if (temp == null)
+            {
+                MessageBox.Show("Услуга не найдена!");
+                return;
+            }    
+
+            context.ServiceRepo.RemoveService(NewServiceName);
+
+            ServicesList.Remove(temp);
         }
         #endregion
 
@@ -702,6 +705,8 @@ namespace FitnessCenter.ViewModel
 
         public AdminPanelViewModel() 
         {
+            RemoveService = new RelayCommand(OnRemoveServiceCommand, CanRemoveServiceCommand);
+
             SelectedServices = new RelayCommand(OnSelectedServicesCommand, CanSelectedServicesCommand);///////////////////////////////////////////////////////////////////////////
 
             ChangeServicesListVisibility = new RelayCommand(OnChangeServicesListVisibilityCommand, CanChangeServicesListVisibilityCommand);

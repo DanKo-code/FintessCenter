@@ -77,6 +77,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox  Text="{Binding NewServiceName}" Grid.Column="0" Background="Aqua" Grid.Row="0">
@@ -86,6 +87,7 @@
                         </TextBox>
 
                         <Button Command="{Binding AddService}" Content="Добавить" Grid.Column="1"/>
+                        <Button Command="{Binding RemoveService}" Content="Удалить" Grid.Column="2"/>
                     </Grid>
 
                     <!--<ListBox x:Name="myListBox" MaxHeight="100" Visibility="{Binding ServicesListVisibility}" ItemsSource="{Binding ServicesList}" Grid.Row="1" SelectionMode="Multiple">

@@ -19,8 +19,6 @@ namespace FitnessCenter.Helpers
             DependencyProperty.Register("SelectedItems", typeof(ICollection<Services>), typeof(MyListBox),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        //public AdminPanelViewModel OtherClassInstance = new AdminPanelViewModel();
-
         public ICollection<Services> SelectedItems
         {
             get 
@@ -32,8 +30,6 @@ namespace FitnessCenter.Helpers
                 SetValue(SelectedItemsProperty, value); 
             }
         }
-
-
 
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
@@ -61,7 +57,6 @@ namespace FitnessCenter.Helpers
 
         }
 
-
         public MyListBox()
         {
             AdminPanelViewModel.MyEvent += OtherClass_MyEvent;
@@ -71,15 +66,5 @@ namespace FitnessCenter.Helpers
         {
             this.SetSelectedItems(SelectedItems);
         }
-
-        //private void MyListBox_VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if(this.Visibility == Visibility.Visible)
-        //    {
-        //        this.SetSelectedItems(SelectedItems);
-        //    }
-        //}
-
-
     }
 }
